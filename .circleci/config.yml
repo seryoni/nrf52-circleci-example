@@ -16,21 +16,21 @@ jobs:
                     - pca10040/blank/armgcc/_build
             - store_artifacts:
                 path: pca10040/blank/armgcc/_build
-        test:
-            docker:
-                - image: circleci/python:2-stretch
-            steps:
-                - attach_workspace:
-                    at: .
-                - run:
-                    name: setup
-                    command: |
-                        mkdir ~/.jumper/
-                        echo $VLAB_USER_CONFIG > ~/.jumper/config.json
-                        pip install -r requirements.txt
-                - run:
-                    name: test
-                    command: nosetests --rednose -v test
+    test:
+        docker:
+            - image: circleci/python:2-stretch
+        steps:
+            - attach_workspace:
+                at: .
+            - run:
+                name: setup
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+                    pip install -r requirements.txt
+            - run:
+                name: test
+                command: nosetests --rednose -v test
 
 workflows:
     version: 2
