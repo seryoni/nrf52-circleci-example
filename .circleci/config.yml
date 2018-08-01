@@ -26,7 +26,7 @@ jobs:
             mkdir ~/.jumper/
             echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             pip install -r requirements.txt
-      - run:
+        - run:
           name: test
           command: nosetests --rednose -v test
 
