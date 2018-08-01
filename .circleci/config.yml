@@ -1,43 +1,43 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: jumperio/vlab-gcc-arm
-    environment:
-        ARM_NONE_EABI: /usr
-    steps:
-      - checkout
-      - run:
-          name: build
-          command: make -C pca10040/blank/armgcc/
-      - persist_to_workspace:
-          root: .
-          paths:
-            - pca10040/blank/armgcc/_build
-      - store_artifacts:
-          path: pca10040/blank/armgcc/_build
-  test:
-      docker:
-        - image: circleci/python:2-stretch
-      steps:
-        - attach_workspace:
-            at: .
-        - run:
-          name: setup
-          command: |
-            mkdir ~/.jumper/
-            echo $VLAB_USER_CONFIG > ~/.jumper/config.json
-            pip install -r requirements.txt
-        - run:
-          name: test
-          command: nosetests --rednose -v test
+    build:
+        docker:
+            - image: jumperio/vlab-gcc-arm
+        environment:
+            ARM_NONE_EABI: /usr
+        steps:
+            - checkout
+            - run:
+                name: build
+                command: make -C pca10040/blank/armgcc/
+            - persist_to_workspace:
+                root: .
+                paths:
+                    - pca10040/blank/armgcc/_build
+            - store_artifacts:
+                path: pca10040/blank/armgcc/_build
+        test:
+            docker:
+                - image: circleci/python:2-stretch
+            steps:
+                - attach_workspace:
+                    at: .
+                - run:
+                    name: setup
+                    command: |
+                        mkdir ~/.jumper/
+                        echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+                        pip install -r requirements.txt
+                - run:
+                    name: test
+                    command: nosetests --rednose -v test
 
 workflows:
-  version: 2
-  sample-workflow:
-    jobs:
-      - build
-      - test:
-          context: org-global
-          requires:
+    version: 2
+    app-button:
+        jobs:
             - build
+            - test:
+                context: org-global
+                requires:
+                    - build
