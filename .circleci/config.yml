@@ -15,11 +15,12 @@ jobs:
                 paths:
                     - pca10040/blank/armgcc/_build
             - store_artifacts:
-                path: .
+                path: pca10040/blank/armgcc/_build
     test:
         docker:
             - image: circleci/python:2-stretch
         steps:
+            - checkout
             - attach_workspace:
                 at: .
             - run:
