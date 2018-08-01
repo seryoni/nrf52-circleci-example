@@ -10,10 +10,19 @@ jobs:
             - run:
                 name: build
                 command: make -C pca10040/blank/armgcc/
+            - run:
+                name: setup
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+                    virtualenv venv
+                    source venv/bin/activate
+                    pip install -r requirements.txt
             - persist_to_workspace:
                 root: .
                 paths:
                     - pca10040/blank/armgcc/_build
+                    - venv
             - store_artifacts:
                 path: pca10040/blank/armgcc/_build
     test:
@@ -25,10 +34,7 @@ jobs:
                 at: .
             - run:
                 name: setup
-                command: |
-                    mkdir ~/.jumper/
-                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
-                    pip install --user -r requirements.txt
+                command: source venv/bin/activate
             - run:
                 name: test
                 command: nosetests --rednose -v test
