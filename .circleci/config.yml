@@ -11,7 +11,7 @@ jobs:
           name: build
           command: make -C pca10040/blank/armgcc/
       - persist_to_workspace:
-        paths:
+          paths:
             - pca10040/blank/armgcc/_build
       - store_artifacts:
           path: pca10040/blank/armgcc/_build
