@@ -28,8 +28,6 @@ jobs:
             - run:
                 name: setup
                 command: |
-                    mkdir ~/.jumper/
-                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
                     virtualenv --python=python2 venv
                     . venv/bin/activate
                     pip install -r requirements.txt
@@ -47,6 +45,11 @@ jobs:
             - checkout
             - attach_workspace:
                 at: .
+            - run:
+                name: setup
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             - run:
                 name: test
                 command: |
