@@ -14,7 +14,7 @@ jobs:
                 name: install arm-nonoe-eabi
                 command: |
                     if [ ! -d gcc-arm-none-eabi-7-2018-q2-update ]; then
-                        wegt https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz
+                        wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/7-2018q2/gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz
                         tar xvf gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz
                         rm gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz
                     fi
