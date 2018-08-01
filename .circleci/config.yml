@@ -58,7 +58,7 @@ workflows:
     version: 2
     app-button:
         jobs:
-            - build
+            - build:
                 context: org-global
             - test:
                 context: org-global
