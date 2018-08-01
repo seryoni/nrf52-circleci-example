@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: circleci/python:2-stretch
+            - image: circleci/python
         environment:
             ARM_NONE_EABI: /home/circleci/gcc-arm-none-eabi-7-2018-q2-update
         steps:
@@ -30,7 +30,7 @@ jobs:
                 command: |
                     mkdir ~/.jumper/
                     echo $VLAB_USER_CONFIG > ~/.jumper/config.json
-                    virtualenv venv
+                    virtualenv --python=python2 venv
                     source venv/bin/activate
                     pip install -r requirements.txt
             - persist_to_workspace:
@@ -59,6 +59,7 @@ workflows:
     app-button:
         jobs:
             - build
+                context: org-global
             - test:
                 context: org-global
                 requires:
