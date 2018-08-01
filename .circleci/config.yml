@@ -24,7 +24,7 @@ jobs:
                     - /home/circleci/gcc-arm-none-eabi-7-2018-q2-update
             - run:
                 name: build
-                command: make -C pca10040/blank/armgcc/
+                command: make
             - run:
                 name: setup
                 command: |
@@ -34,10 +34,10 @@ jobs:
             - persist_to_workspace:
                 root: .
                 paths:
-                    - pca10040/blank/armgcc/_build
+                    - _build
                     - venv
             - store_artifacts:
-                path: pca10040/blank/armgcc/_build
+                path: _build
     test:
         docker:
             - image: circleci/python

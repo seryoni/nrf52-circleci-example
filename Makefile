@@ -2,8 +2,8 @@ PROJECT_NAME     := wdt_pca10040
 TARGETS          := nrf52832_xxaa
 OUTPUT_DIRECTORY := _build
 
-SDK_ROOT := ../../../nRF5_SDK_14.1.0_1dda907
-PROJ_DIR := ../../..
+SDK_ROOT := ./nRF5_SDK_14.1.0_1dda907
+PROJ_DIR := .
 
 $(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
   LINKER_SCRIPT  := wdt_gcc_nrf52.ld
@@ -45,7 +45,7 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/drivers_nrf/delay \
   $(SDK_ROOT)/components/toolchain/cmsis/include \
   $(SDK_ROOT)/components/libraries/util \
-  ../config \
+  ./config \
   $(SDK_ROOT)/components/libraries/balloc \
   $(SDK_ROOT)/components/drivers_nrf/wdt \
   $(SDK_ROOT)/components/libraries/bsp \
@@ -149,27 +149,7 @@ flash: $(OUTPUT_DIRECTORY)/nrf52832_xxaa.hex
 erase:
 	nrfjprog -f nrf52 --eraseall
 
-SDK_CONFIG_FILE := ../config/sdk_config.h
+SDK_CONFIG_FILE := ./config/sdk_config.h
 CMSIS_CONFIG_TOOL := $(SDK_ROOT)/external_tools/cmsisconfig/CMSIS_Configuration_Wizard.jar
 sdk_config:
 	java -jar $(CMSIS_CONFIG_TOOL) $(SDK_CONFIG_FILE)
-
-##########
-# JUMPER #
-##########
-
-start_emulator: $(OUTPUT_DIRECTORY)/nrf52832_xxaa.bin
-	jumper run --directory ../../../test/ --bin _build/nrf52832_xxaa.bin
-
-start_emulator_gdb: $(OUTPUT_DIRECTORY)/nrf52832_xxaa.bin
-	jumper run --directory ../../../test/ --bin _build/nrf52832_xxaa.bin --gdb
-
-.PHONY: start_emulator start_emulator_gdb
-
-test: $(OUTPUT_DIRECTORY)/nrf52832_xxaa.bin
-	python ../../../test/test_runner.py
-
-
-#################
-# END OF JUMPER #
-#################
