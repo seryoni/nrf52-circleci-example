@@ -19,7 +19,7 @@ jobs:
                         rm gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz
                     fi
             - save_cache:
-                key: arm-none-eabi-{{ .BuildNum }}
+                key: arm-none-eabi-{{ checksum "/home/circleci/gcc-arm-none-eabi-7-2018-q2-update/bin/arm-none-eabi-gcc" }}
                 paths:
                     - /home/circleci/gcc-arm-none-eabi-7-2018-q2-update
             - run:
@@ -42,7 +42,7 @@ jobs:
                 path: pca10040/blank/armgcc/_build
     test:
         docker:
-            - image: circleci/python:2-stretch
+            - image: circleci/python
         steps:
             - checkout
             - attach_workspace:
