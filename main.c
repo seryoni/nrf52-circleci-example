@@ -113,36 +113,6 @@ int main(void)
 {
     uint32_t err_code = NRF_SUCCESS;
     
-    #ifdef UNIT_TESTS    
-    uint32_t err_code;
-    const app_uart_comm_params_t comm_params =
-        {
-            RX_PIN_NUMBER,
-            TX_PIN_NUMBER,
-            RTS_PIN_NUMBER,
-            CTS_PIN_NUMBER,
-            APP_UART_FLOW_CONTROL_ENABLED,
-            false,
-            UART_BAUDRATE_BAUDRATE_Baud115200
-        };
-
-    APP_UART_FIFO_INIT(&comm_params,
-                       UART_RX_BUF_SIZE,
-                       UART_TX_BUF_SIZE,
-                       uart_error_handle,
-                       APP_IRQ_PRIORITY_LOWEST,
-                       err_code);
-
-    APP_ERROR_CHECK(err_code);
-    bsp_board_leds_init();
-
-    UnityBegin("main.c");
-    // RUN_TEST(test_FindFunction_WhichIsBroken_ShouldReturnZeroIfItemIsNotInList_WhichWorksEvenInOurBrokenCode, 20);
-    
-    int unity_code = UnityEnd();
-    jumper_sudo_exit_with_exit_code(unity_code);
-    #else
-
     //Configure all LEDs on board.
     bsp_board_leds_init();
 
@@ -159,9 +129,6 @@ int main(void)
 
     err_code = bsp_buttons_enable();
     APP_ERROR_CHECK(err_code);
-        
-    #endif
-
     while (1)
     {
         __SEV();
