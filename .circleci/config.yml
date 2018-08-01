@@ -2,18 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: jumperio/vlab-gcc-arm:latest
+      - image: jumperio/vlab-gcc-arm
     environment:
         ARM_NONE_EABI: /usr
     steps:
       - checkout
       - run:
           name: build
-          command: make -C pca10040/blank/armgcc/ -j4
+          command: make -C pca10040/blank/armgcc/
       - run:
           name: test
           command: |
-            echo $VLAB_USER_CONFIG > /home/circleci/.jumper/config.json
+            echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             pip install -r requirements.txt
             nosetests --rednose -v test
       - store_artifacts:
