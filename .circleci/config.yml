@@ -31,7 +31,7 @@ jobs:
                     mkdir ~/.jumper/
                     echo $VLAB_USER_CONFIG > ~/.jumper/config.json
                     virtualenv --python=python2 venv
-                    source venv/bin/activate
+                    . venv/bin/activate
                     pip install -r requirements.txt
             - persist_to_workspace:
                 root: .
@@ -48,11 +48,10 @@ jobs:
             - attach_workspace:
                 at: .
             - run:
-                name: setup
-                command: source venv/bin/activate
-            - run:
                 name: test
-                command: nosetests --rednose -v test
+                command: |
+                    . venv/bin/activate
+                    nosetests --rednose -v test
 
 workflows:
     version: 2
