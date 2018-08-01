@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: jumperio/vlab-gcc-arm
-    context: org-global
     environment:
         ARM_NONE_EABI: /usr
     steps:
@@ -22,3 +21,10 @@ jobs:
           command: nosetests --rednose -v test
       - store_artifacts:
           path: pca10040/blank/armgcc/_build
+
+workflows:
+  version: 2
+  sample-workflow:
+    jobs:
+      - build:
+          context: org-global
