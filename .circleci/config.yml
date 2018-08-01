@@ -11,10 +11,13 @@ jobs:
           name: build
           command: make -C pca10040/blank/armgcc/
       - run:
-          name: test
+          name: setup
           command: |
+            mkdir ~/.jumper/
             echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             pip install -r requirements.txt
-            nosetests --rednose -v test
+      - run:
+          name: test
+          command: nosetests --rednose -v test
       - store_artifacts:
           path: pca10040/blank/armgcc/_build
