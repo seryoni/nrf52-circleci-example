@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: jumperio/vlab-gcc-arm
+    context: org-global
     environment:
         ARM_NONE_EABI: /usr
     steps:
