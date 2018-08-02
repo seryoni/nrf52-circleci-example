@@ -14,6 +14,7 @@ $(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
 # Source files common to all targets
 SRC_FILES += \
   $(SDK_ROOT)/components/boards/boards.c \
+  $(SDK_ROOT)/components/libraries/util/app_error.c \
   $(SDK_ROOT)/components/libraries/util/app_error_weak.c \
   $(SDK_ROOT)/components/libraries/fifo/app_fifo.c \
   $(SDK_ROOT)/components/libraries/uart/app_uart_fifo.c \
