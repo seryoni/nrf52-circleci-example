@@ -31,6 +31,7 @@ void uart_error_handle(app_uart_evt_t * p_event)
 extern void setUp(void);
 extern void tearDown(void);
 extern void test_CallTheButtonCallback(void);
+extern void test_SetButtonPinLevel(void);
 
 
 void resetTest(void);
@@ -67,6 +68,7 @@ int main(void)
     UnityBegin("test/TestProductionCode.c");
     
     RUN_TEST(test_CallTheButtonCallback);
+    RUN_TEST(test_SetButtonPinLevel);
 
     int unity_code = UnityEnd();
     jumper_sudo_exit_with_exit_code(unity_code);
