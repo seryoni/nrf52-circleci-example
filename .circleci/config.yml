@@ -48,8 +48,6 @@ jobs:
                     - venv
                     - pca10040/TemperatureSensor.cert.pem
                     - pca10040/TemperatureSensor.private.key
-            - store_artifacts:
-                path: pca10040/blank/armgcc/_build
     test-1:
         docker:
             - image: circleci/python
