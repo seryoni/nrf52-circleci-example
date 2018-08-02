@@ -38,7 +38,7 @@ SRC_FILES += \
   $(SDK_ROOT)/components/drivers_nrf/uart/nrf_drv_uart.c \
   $(SDK_ROOT)/components/libraries/bsp/bsp.c \
   $(SDK_ROOT)/components/libraries/bsp/bsp_nfc.c \
-  $(PROJ_DIR)/main.c \
+  $(PROJ_DIR)/src/main.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_Syscalls_GCC.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
@@ -71,6 +71,7 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/libraries/experimental_log \
   $(SDK_ROOT)/components/drivers_nrf/spi_master \
   $(PROJ_DIR) \
+  $(PROJ_DIR)/src \
   $(SDK_ROOT)/components/libraries/fifo \
   $(SDK_ROOT)/components/libraries/timer \
   $(SDK_ROOT)/components/libraries/strerror \

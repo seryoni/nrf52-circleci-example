@@ -3,7 +3,7 @@ from time import sleep
 from jumper.vlab import Vlab
 
 dir = os.path.dirname(os.path.abspath(__file__))
-fw_bin = os.path.join(dir, '_build', 'nrf52832_xxaa.bin')
+fw_bin = os.path.join(dir, '..', 'pca10040', 'blank', 'armgcc', '_build', 'nrf52832_xxaa.bin')
 
 vlab = Vlab(working_directory=dir, print_uart=True)
 vlab.load(fw_bin)
