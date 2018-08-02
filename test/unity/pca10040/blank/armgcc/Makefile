@@ -38,7 +38,6 @@ SRC_FILES += \
   $(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf52.S \
   $(SDK_ROOT)/components/toolchain/system_nrf52.c \
   $(UNITY_DIR)/src/unity.c \
-  $(PROJ_DIR)/ProductionCode.c \
   $(PROJ_DIR)/test/TestProductionCode.c \
   $(SUDO_DIR)/jumper.c \
 
@@ -151,6 +150,7 @@ INC_FOLDERS += \
   $(UNITY_DIR) \
   $(SDK_ROOT)/components/libraries/fifo \
   $(PROJ_DIR)/test/ \
+  $(PROJ_DIR)/src/ \
   $(SUDO_DIR) \
 # Libraries common to all targets
 LIB_FILES += \
