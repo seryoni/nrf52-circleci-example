@@ -9,7 +9,7 @@ fw_bin = os.path.join(dir, '..', 'pca10040', 'blank', 'armgcc', '_build', 'nrf52
 
 class TestEndToEnd(unittest.TestCase):
     def setUp(self):
-        # print(self.id().split('.')[-1])  # test name
+        print(self.id().split('.')[-1])  # test name
         # self.vlab = Vlab(working_directory=dir, print_uart=True)
         # self.vlab.load(fw_bin)
         # self.vlab.run_for_ms(500)
