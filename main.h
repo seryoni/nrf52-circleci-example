@@ -1,52 +1,77 @@
-#include <stdbool.h>
-#include <stdint.h>
+/**
+ * \file
+ *
+ * \brief MAIN configuration.
+ *
+ * Copyright (c) 2016 Atmel Corporation. All rights reserved.
+ *
+ * \asf_license_start
+ *
+ * \page License
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * 3. The name of Atmel may not be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
+ * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * \asf_license_stop
+ *
+ */
 
-#include "nrf.h"
-#include "bsp.h"
-#include "app_timer.h"
-#include "app_error.h"
-// #include "nrf_drv_wdt.h"
-#include "nrf_drv_clock.h"
-#include "nrf_delay.h"
-#include "app_util_platform.h"
-#include "app_uart.h"
-#include "boards.h"
-#define NRF_LOG_MODULE_NAME
+#ifndef MAIN_H_INCLUDED
+#define MAIN_H_INCLUDED
 
-#define MAX_TEST_DATA_BYTES     (15U)                /**< max number of test bytes to be used for tx and rx. */
-#define UART_TX_BUF_SIZE 256                         /**< UART TX buffer size. */
-#define UART_RX_BUF_SIZE 256                         /**< UART RX buffer size. */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
-{
-    bsp_board_leds_off();
-    while (1)
-        ;
+/** Wi-Fi Settings */
+#define MAIN_WLAN_SSID        "ssid" /* < Destination SSID */
+#define MAIN_WLAN_AUTH        M2M_WIFI_SEC_WPA_PSK /* < Security manner */
+#define MAIN_WLAN_PSK         "my_top_secret" /* < Password for Destination SSID */
+
+/** Wi-Fi Settings */
+//#define MAIN_WLAN_SSID                    "DEMO_AP" /**< Destination SSID */
+#define MAIN_WLAN_AUTH                    M2M_WIFI_SEC_WPA_PSK /**< Security manner */
+//#define MAIN_WLAN_PSK                     "12345678" /**< Password for Destination SSID */
+#define MAIN_WIFI_M2M_PRODUCT_NAME        "HELLO :)"
+#define NO_ECHO                           "NO ECHO!"
+// #define MAIN_WIFI_M2M_SERVER_IP           0xc0a80164 //0xFFFFFFFF /* 255.255.255.255 */
+#define MAIN_WIFI_M2M_SERVER_IP           0x7f000001 // localhost
+
+#define MAIN_WIFI_M2M_REPORT_INTERVAL     (1000)
+
+#define TCP_SERVER_PORT_AS_CLIENT         (6666)
+#define TCP_SERVER_PORT_AS_SERVER         (6667)
+
+#define UDP_SERVER_PORT_SEND              (7777)
+#define UDP_SERVER_PORT_RECEIVE           (7778)
+
+
+#define MAIN_WIFI_M2M_BUFFER_SIZE          40
+
+#ifdef __cplusplus
 }
+#endif
 
-void bsp_event_callback(bsp_event_t event)
-{
-    switch (event)
-    {
-    case BSP_EVENT_KEY_0:
-        // nrf_drv_wdt_channel_feed(m_channel_id);
-        bsp_board_led_on(0);
-        break;
-
-    default:
-        //Do nothing.
-        break;
-    }
-}
-
-void uart_error_handle(app_uart_evt_t *p_event)
-{
-    if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
-    {
-        APP_ERROR_HANDLER(p_event->data.error_communication);
-    }
-    else if (p_event->evt_type == APP_UART_FIFO_ERROR)
-    {
-        APP_ERROR_HANDLER(p_event->data.error_code);
-    }
-}
+#endif /* MAIN_H_INCLUDED */

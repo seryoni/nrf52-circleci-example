@@ -24,7 +24,7 @@ jobs:
                     - /home/circleci/gcc-arm-none-eabi-7-2018-q2-update
             - run:
                 name: build
-                command: make
+                command: make -C pca10040/blank/armgcc/
             - run:
                 name: build-unit-test
                 command: test/make
@@ -35,18 +35,21 @@ jobs:
                     . venv/bin/activate
                     pip install -r requirements.txt
             - run:
-                name: setup-vlab-user-config
+                name: setup-config
                 command: |
                     mkdir ~/.jumper/
-                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+                    echo $VLAB_USER_CONFIG > .jumper/config.json
+                    echo $ROOT_CA > root-CA.crt
+                    echo $TEMP_SENSOR_CERT > pca10040/TemperatureSensor.cert.pem
+                    echo $TEMP_SENSOR_KEY > pca10040/TemperatureSensor.private.key
             - persist_to_workspace:
                 root: .
                 paths:
-                    - _build
+                    - pca10040/blank/armgcc/_build
                     - venv
                     - .jumper/config.json
             - store_artifacts:
-                path: _build
+                path: pca10040/blank/armgcc/_build
     # system-test:
     #     docker:
     #         - image: circleci/python
