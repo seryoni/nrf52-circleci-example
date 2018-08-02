@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include <stdint.h>
-#include "nrf_delay.h"
+// #include "nrf_delay.h"
 #include "boards.h"
 #define NRF_LOG_MODULE_NAME
 #include "app_uart.h"

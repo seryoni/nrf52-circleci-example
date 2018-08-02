@@ -1,4 +1,4 @@
-#include "/Users/elhanan/jumper/nrf52-circleci-example/src/main.h"
+#include "main.h"
 #include "unity.h"
 
 void setUp(void)
