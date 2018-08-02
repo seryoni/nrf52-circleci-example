@@ -38,7 +38,24 @@ jobs:
                     - venv
             - store_artifacts:
                 path: _build
-    test:
+    system-test:
+        docker:
+            - image: circleci/python
+        steps:
+            - checkout
+            - attach_workspace:
+                at: .
+            - run:
+                name: setup
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+            - run:
+                name: test
+                command: |
+                    . venv/bin/activate
+                    nosetests --rednose -v test
+    unit-test:
         docker:
             - image: circleci/python
         steps:
@@ -70,3 +87,4 @@ workflows:
                 context: org-global
                 requires:
                     - build
+                    - system-test
