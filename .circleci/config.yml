@@ -25,9 +25,9 @@ jobs:
             - run:
                 name: build
                 command: make -C pca10040/blank/armgcc/
-            # - run:
-            #     name: build-unit-test
-            #     command: test/make
+            - run:
+                name: build-unit-test
+                command: make -C test/unity/pca10040/blank/armgcc/
             - run:
                 name: setup
                 command: |
@@ -44,11 +44,10 @@ jobs:
                 root: .
                 paths:
                     - pca10040/blank/armgcc/_build
+                    - test/unity/pca10040/blank/armgcc/_build
                     - venv
                     - pca10040/TemperatureSensor.cert.pem
                     - pca10040/TemperatureSensor.private.key
-            - store_artifacts:
-                path: pca10040/blank/armgcc/_build
     test-1:
         docker:
             - image: circleci/python
@@ -62,10 +61,10 @@ jobs:
                     mkdir ~/.jumper/
                     echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             - run:
-                name: test-1
+                name: test-1 (unit test)
                 command: |
                     . venv/bin/activate
-                    nosetests --rednose -v test/test_runner_1.py
+                    jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
     test-2:
         docker:
             - image: circleci/python
@@ -121,27 +120,23 @@ jobs:
 
 workflows:
     version: 2
-    app-button:
+    atwinc-aws-demo:
         jobs:
             - build:
-                context: org-global
-            # - system-test:
-            #     context: org-global
-            #     requires:
-            #         - build
+                context: atwinc-aws-demo
             - test-1:
-                context: org-global
+                context: atwinc-aws-demo
                 requires:
                     - build
             - test-2:
-                context: org-global
+                context: atwinc-aws-demo
                 requires:
                     - build
             - test-3:
-                context: org-global
+                context: atwinc-aws-demo
                 requires:
                     - build
             - test-4:
-                context: org-global
+                context: atwinc-aws-demo
                 requires:
                     - build
