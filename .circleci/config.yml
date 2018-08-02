@@ -65,7 +65,7 @@ jobs:
                 name: test-1
                 command: |
                     . venv/bin/activate
-                    jumper run -u --fw unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
+                    jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
     test-2:
         docker:
             - image: circleci/python
