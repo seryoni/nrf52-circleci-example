@@ -25,9 +25,9 @@ jobs:
             - run:
                 name: build
                 command: make -C pca10040/blank/armgcc/
-            # - run:
-            #     name: build-unit-test
-            #     command: test/make
+            - run:
+                name: build-unit-test
+                command: make -C test/unity/pca10040/blank/armgcc/
             - run:
                 name: setup
                 command: |
@@ -65,7 +65,7 @@ jobs:
                 name: test-1
                 command: |
                     . venv/bin/activate
-                    nosetests --rednose -v test/test_runner_1.py
+                    jumper run -u --fw unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
     test-2:
         docker:
             - image: circleci/python
@@ -124,24 +124,24 @@ workflows:
     app-button:
         jobs:
             - build:
-                context: org-global
+                context: atwinc-aws-demo
             # - system-test:
-            #     context: org-global
+            #     context: atwinc-aws-demo
             #     requires:
             #         - build
             - test-1:
-                context: org-global
+                context: atwinc-aws-demo
                 requires:
                     - build
             - test-2:
-                context: org-global
+                context: atwinc-aws-demo
                 requires:
                     - build
             - test-3:
-                context: org-global
+                context: atwinc-aws-demo
                 requires:
                     - build
             - test-4:
-                context: org-global
+                context: atwinc-aws-demo
                 requires:
                     - build
