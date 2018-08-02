@@ -12,6 +12,7 @@ class TestEndToEnd(unittest.TestCase):
         print(self.id().split('.')[-1])  # test name
         # self.vlab = Vlab(working_directory=dir, print_uart=True)
         # self.vlab.load(fw_bin)
+        # self.uart = self.vlab.uart
         # self.vlab.run_for_ms(500)
         # print('Virtual device is running')
 
@@ -20,7 +21,8 @@ class TestEndToEnd(unittest.TestCase):
         pass
 
     '''
-    Black Box Test - Set temperature, click a button and verify that the same temperature was printed to UART
+    Black Box Test 
+    Set temperature, click a button and verify that the same temperature was printed to UART
     '''
     def test_2_Black_Box(self):
         # print('Button on')
@@ -29,9 +31,8 @@ class TestEndToEnd(unittest.TestCase):
         # print('Button off')
         # self.vlab.BUTTON1.off()
 
-
-        self.assertEqual(345, 345)  # in this case we are going to poll for the pin level
-        self.assertTrue(True)
+        # self.assertEqual(self.uart.read(), "")
+        self.assertTrue(True)  
           
 
 if __name__ == '__main__':

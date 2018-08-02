@@ -29,7 +29,7 @@ class TestEndToEnd(unittest.TestCase):
         # print('Button off')
         # self.vlab.BUTTON1.off()
 
-        self.assertEqual(345, 345)  # in this case we are going to poll for the pin level
+        self.assertEqual(345, 345)  
         self.assertTrue(True)
           
 
