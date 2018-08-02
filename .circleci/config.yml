@@ -35,10 +35,8 @@ jobs:
                     . venv/bin/activate
                     pip install -r requirements.txt
             - run:
-                name: setup-config
+                name: setup-keys
                 command: |
-                    mkdir .jumper/
-                    echo $VLAB_USER_CONFIG > .jumper/config.json
                     echo $ROOT_CA > root-CA.crt
                     echo $TEMP_SENSOR_CERT > pca10040/TemperatureSensor.cert.pem
                     echo $TEMP_SENSOR_KEY > pca10040/TemperatureSensor.private.key
@@ -47,7 +45,8 @@ jobs:
                 paths:
                     - pca10040/blank/armgcc/_build
                     - venv
-                    - .jumper/config.json
+                    - pca10040/TemperatureSensor.cert.pem
+                    - pca10040/TemperatureSensor.private.key
             - store_artifacts:
                 path: pca10040/blank/armgcc/_build
     test-1:
@@ -57,6 +56,11 @@ jobs:
             - checkout
             - attach_workspace:
                 at: .
+            - run:
+                name: config
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             - run:
                 name: test-1
                 command: |
@@ -70,6 +74,11 @@ jobs:
             - attach_workspace:
                 at: .
             - run:
+                name: config
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+            - run:
                 name: test-2
                 command: |
                     . venv/bin/activate
@@ -81,6 +90,11 @@ jobs:
             - checkout
             - attach_workspace:
                 at: .
+            - run:
+                name: config
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             - run:
                 name: test-3
                 command: |
@@ -94,6 +108,11 @@ jobs:
             - checkout
             - attach_workspace:
                 at: .
+            - run:
+                name: config
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             - run:
                 name: test-4
                 command: |
