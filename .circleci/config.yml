@@ -44,7 +44,7 @@ jobs:
                 paths:
                     - _build
                     - venv
-                    - ~/.jumper/config.json
+                    - .jumper/config.json
             - store_artifacts:
                 path: _build
     # system-test:
