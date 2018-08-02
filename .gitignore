@@ -2,3 +2,4 @@ _build
 *.pyc
 venv
 .jumper
+.vscode

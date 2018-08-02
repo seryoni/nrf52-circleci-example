@@ -62,7 +62,11 @@ workflows:
         jobs:
             - build:
                 context: org-global
-            - test:
+            - system-test:
+                context: org-global
+                requires:
+                    - build
+            - unit-test:
                 context: org-global
                 requires:
                     - build
