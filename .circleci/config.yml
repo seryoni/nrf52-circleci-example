@@ -37,7 +37,7 @@ jobs:
             - run:
                 name: setup-config
                 command: |
-                    mkdir ~/.jumper/
+                    mkdir .jumper/
                     echo $VLAB_USER_CONFIG > .jumper/config.json
                     echo $ROOT_CA > root-CA.crt
                     echo $TEMP_SENSOR_CERT > pca10040/TemperatureSensor.cert.pem
