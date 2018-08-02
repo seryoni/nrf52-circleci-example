@@ -44,6 +44,7 @@ jobs:
                 root: .
                 paths:
                     - pca10040/blank/armgcc/_build
+                    - test/unity/pca10040/blank/armgcc/_build
                     - venv
                     - pca10040/TemperatureSensor.cert.pem
                     - pca10040/TemperatureSensor.private.key
@@ -62,7 +63,7 @@ jobs:
                     mkdir ~/.jumper/
                     echo $VLAB_USER_CONFIG > ~/.jumper/config.json
             - run:
-                name: test-1
+                name: test-1 (unit test)
                 command: |
                     . venv/bin/activate
                     jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
@@ -121,14 +122,10 @@ jobs:
 
 workflows:
     version: 2
-    app-button:
+    atwinc-aws-demo:
         jobs:
             - build:
                 context: atwinc-aws-demo
-            # - system-test:
-            #     context: atwinc-aws-demo
-            #     requires:
-            #         - build
             - test-1:
                 context: atwinc-aws-demo
                 requires:
