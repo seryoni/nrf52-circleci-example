@@ -1454,7 +1454,7 @@
     #else
         // printf("  pressure: %d.\r\n", comp_data->pressure);
         printf("  Temperature: %d.\r\n", comp_data->temperature);
-        printf("  humidity: %d.\r\n\r\n", comp_data->humidity);
+        // printf("  humidity: %d.\r\n\r\n", comp_data->humidity);
     #endif
     }
 
@@ -1508,12 +1508,12 @@
         bme280_set_sensor_mode(BME280_NORMAL_MODE, dev);
     
         printf("Temperature, Pressure, Humidity\r\n");
-        while (1) {
-            /* Delay while the sensor completes a measurement */
-            dev->delay_ms(70);
-            bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
-            print_sensor_data(&comp_data);
-        }
+        // while (1) {
+        //     /* Delay while the sensor completes a measurement */
+        //     dev->delay_ms(70);
+        //     bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
+        //     print_sensor_data(&comp_data);
+        // }
     }
 
     void bme_handler(nrf_drv_twi_evt_t const * p_event, void * p_context){
@@ -1559,4 +1559,13 @@ void bme_start() {
     printf("result: %d\r\n", rslt);
     stream_sensor_data_normal_mode(&dev);
 
+}
+
+uint32_t bme280_get_temperature() {
+        /* Delay while the sensor completes a measurement */
+        struct bme280_data comp_data;
+        // dev.delay_ms(70);
+        bme280_get_sensor_data(BME280_ALL, &comp_data, &dev);
+        // print_sensor_data(&comp_data);
+        return comp_data.temperature;
 }

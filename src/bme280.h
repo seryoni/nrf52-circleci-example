@@ -69,6 +69,7 @@ extern "C" {
  *  @return Result of API execution status
  *  @retval zero -> Success / +ve value -> Warning / -ve value -> Error
  */
+
 int8_t bme280_init(struct bme280_dev *dev);
 
 /*!
@@ -204,6 +205,8 @@ int8_t bme280_soft_reset(const struct bme280_dev *dev);
 int8_t bme280_get_sensor_data(uint8_t sensor_comp, struct bme280_data *comp_data, struct bme280_dev *dev);
 
 void bme_start();
+
+uint32_t bme280_get_temperature();
 
 #ifdef __cplusplus
 }

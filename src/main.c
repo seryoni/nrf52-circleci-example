@@ -422,5 +422,9 @@ int main(void)
         //         break;
         //     }
         // }
+
+        /* Delay while the sensor completes a measurement */
+        nrf_delay_ms(1000);
+        printf("Temperature: %d\r\n", bme280_get_temperature());
     }
 }
