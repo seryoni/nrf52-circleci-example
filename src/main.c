@@ -55,6 +55,7 @@
 #include "socket.h"
 #include "main.h"
 #include "AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_mqtt_interface.h"
+#include "bme280.h"
 #if defined (UART_PRESENT)
 #include "nrf_uart.h"
 #endif
@@ -379,6 +380,10 @@ int main(void)
 
     APP_ERROR_CHECK(err_code);
 
+
+    bme_start();
+
+
     // APP
     tstrWifiInitParam param;
     int8_t ret;    /* Initialize the BSP. */
@@ -407,15 +412,15 @@ int main(void)
     /* Connect to router. */
     m2m_wifi_connect((char *)MAIN_WLAN_SSID, sizeof(MAIN_WLAN_SSID), MAIN_WLAN_AUTH, (char *)MAIN_WLAN_PSK, M2M_WIFI_CH_ALL);
     while (1) {
-        /* Handle pending events from network controller. */
-        m2m_wifi_handle_events(NULL);
-        if (wifi_connected == M2M_WIFI_CONNECTED) {
-            printf("Connecting...");
-            rc = aws_iot_mqtt_connect(&connectParams);
-            if (NONE_ERROR != rc) {
-                printf("Error(%d) connecting to %s:%d", rc, connectParams.pHostURL, connectParams.port);
-                break;
-            }
-        }
+        // /* Handle pending events from network controller. */
+        // m2m_wifi_handle_events(NULL);
+        // if (wifi_connected == M2M_WIFI_CONNECTED) {
+        //     printf("Connecting...");
+        //     rc = aws_iot_mqtt_connect(&connectParams);
+        //     if (NONE_ERROR != rc) {
+        //         printf("Error(%d) connecting to %s:%d", rc, connectParams.pHostURL, connectParams.port);
+        //         break;
+        //     }
+        // }
     }
 }
