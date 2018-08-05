@@ -380,9 +380,9 @@ int main(void)
 
     APP_ERROR_CHECK(err_code);
 
+    printf("test1\r\n");
 
     bme_start();
-
 
     // APP
     tstrWifiInitParam param;
