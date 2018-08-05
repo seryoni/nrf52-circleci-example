@@ -4,9 +4,7 @@ venv
 .jumper
 .vscode
 root-CA.crt
-pca10040/TemperatureSensor.cert.pem
-pca10040/TemperatureSensor.private.key
-tcp-server/root-CA.crt
-tcp-server/TemperatureSensor.cert.pem
-tcp-server/TemperatureSensor.private.key
+TemperatureSensor.cert.pem
+TemperatureSensor.private.key
+.idea/
 
