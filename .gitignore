@@ -11,3 +11,6 @@ pca10040/blank/.DS_Store
 pca10040/blank/armgcc/.DS_Store
 .DS_Store
 .idea/
+tcp-server/root-CA.crt
+tcp-server/TemperatureSensor.cert.pem
+tcp-server/TemperatureSensor.private.key

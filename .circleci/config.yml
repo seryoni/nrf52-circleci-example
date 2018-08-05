@@ -24,7 +24,7 @@ jobs:
                     - /home/circleci/gcc-arm-none-eabi-7-2018-q2-update
             - run:
                 name: build
-                command: make -C pca10040/blank/armgcc/
+                command: make -C src/pca10040/blank/armgcc/
             - run:
                 name: build-unit-test
                 command: make -C test/unity/pca10040/blank/armgcc/
@@ -38,16 +38,16 @@ jobs:
                 name: setup-keys
                 command: |
                     echo $ROOT_CA > root-CA.crt
-                    echo $TEMP_SENSOR_CERT > pca10040/TemperatureSensor.cert.pem
-                    echo $TEMP_SENSOR_KEY > pca10040/TemperatureSensor.private.key
+                    echo $TEMP_SENSOR_CERT > src/pca10040/TemperatureSensor.cert.pem
+                    echo $TEMP_SENSOR_KEY > src/pca10040/TemperatureSensor.private.key
             - persist_to_workspace:
                 root: .
                 paths:
-                    - pca10040/blank/armgcc/_build
+                    - src/pca10040/blank/armgcc/_build
                     - test/unity/pca10040/blank/armgcc/_build
                     - venv
-                    - pca10040/TemperatureSensor.cert.pem
-                    - pca10040/TemperatureSensor.private.key
+                    - src/pca10040/TemperatureSensor.cert.pem
+                    - src/pca10040/TemperatureSensor.private.key
     test-1:
         docker:
             - image: circleci/python
