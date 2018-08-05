@@ -54,7 +54,7 @@
 #include "m2m_wifi.h"
 #include "socket.h"
 #include "main.h"
-#include "AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_mqtt_interface.h"
+//#include "AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_mqtt_interface.h"
 #include "bme280.h"
 #if defined (UART_PRESENT)
 #include "nrf_uart.h"
@@ -101,7 +101,6 @@ static t_msg_wifi_product msg_no_ecoh = {
 
 /** Receive buffer definition. */
 static uint8_t tcpRecvBuffer[MAIN_WIFI_M2M_BUFFER_SIZE];
-static uint8_t udpRecvBuffer[MAIN_WIFI_M2M_BUFFER_SIZE];
 
 /** Socket for client */
 static SOCKET tcp_client_socket = -1;
@@ -120,6 +119,34 @@ static void close_socket(SOCKET* socket, char* error_msg){
     *socket = -1;
 }
 
+void OpenAndConnectTcpClientSocket() {
+    /* Socket address */
+
+
+    if (tcp_client_socket < 0) {
+        struct sockaddr_in addr;
+        addr.sin_family = AF_INET;
+        addr.sin_port = _htons(TCP_SERVER_PORT_AS_CLIENT);
+        addr.sin_addr.s_addr = _htonl(MAIN_WIFI_M2M_SERVER_IP);
+        /* Open tcp client socket. */
+        tcp_client_socket = socket(AF_INET, SOCK_STREAM, 0);
+
+        if (tcp_client_socket < 0) {
+            printf("main: failed to create TCP client socket error!\r\n");
+        } else {
+            /* Connect server */
+            printf("TCP client: Connecting to TCP socket\r\n");
+            int8_t ret = connect(tcp_client_socket, (struct sockaddr *) &addr, sizeof(struct sockaddr_in));
+            if (ret < 0) {
+                close(tcp_client_socket);
+                tcp_client_socket = -1;
+            }
+            nrf_delay_ms(50);
+        }
+    }
+}
+
+
 static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
     switch (u8Msg) {
 
@@ -128,7 +155,6 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
             tstrSocketConnectMsg *pstrConnect = (tstrSocketConnectMsg *)pvMsg;
             if (pstrConnect && pstrConnect->s8Error >= 0) {
                 printf("TCP client: Connection successful!\r\n");
-                printf("TCP client: Send : '%s' , to echo TCP server\r\n", msg_wifi_product.name);
                 send(tcp_client_socket, &msg_wifi_product, sizeof(t_msg_wifi_product), 0);
             } else {
                 close_socket(&tcp_client_socket, "TCP client: Connection error!\r\n");
@@ -137,14 +163,15 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
         }
 
             /* Message send */
-        case SOCKET_MSG_SEND: {
+        case SOCKET_MSG_SEND: {   
+            nrf_delay_ms(4000);
             printf("TCP client: Send successful!\r\n");
-            recv(tcp_client_socket, tcpRecvBuffer, sizeof(tcpRecvBuffer), 1);
+            send(tcp_client_socket, &msg_wifi_product, sizeof(t_msg_wifi_product), 0);    
             break;
         }
 
             /* Message receive */
-        case SOCKET_MSG_RECV: {
+    /*    case SOCKET_MSG_RECV: {
             tstrSocketRecvMsg *pstrRecv = (tstrSocketRecvMsg *)pvMsg;
             if (pstrRecv && pstrRecv->s16BufferSize > 0) {
                 printf("TCP client: Data received from echo TCP server: ");
@@ -160,10 +187,10 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
                 printf("TCP client: Timeout waiting for TCP response\r\n");
             }
             else {
-                close_socket(&tcp_client_socket, "TCP client: Error on receiving from TCP server!\r\n");
+      //          close_socket(&tcp_client_socket, "TCP client: Error on receiving from TCP server!\r\n");
             }
             break;
-        }
+        } */
 
         default: break;
     }
@@ -263,16 +290,7 @@ static void socket_cb_tcp_server_socket(uint8_t u8Msg, void *pvMsg){
  */
 static void socket_cb(SOCKET sock, uint8_t u8Msg, void *pvMsg)
 {
-    printf("\r\n");
-
-    /* TCP client and server callback */
-    if (sock == tcp_client_socket) {
-        socket_cb_tcp_client_socket(u8Msg, pvMsg);
-    }
-
-    else if (sock == tcp_server_socket) {
-        socket_cb_tcp_server_socket(u8Msg, pvMsg);
-    }
+    socket_cb_tcp_client_socket(u8Msg, pvMsg);
 }
 
 /**
@@ -341,24 +359,6 @@ static void wifi_cb(uint8_t u8MsgType, void *pvMsg)
 int main(void)
 {
 	uint32_t err_code;
-    MQTTConnectParams connectParams = MQTTConnectParamsDefault;
-//    connectParams.port = 1883;
-    IoT_Error_t rc = NONE_ERROR;
-    
-    connectParams.KeepAliveInterval_sec = 10;
-	connectParams.isCleansession = true;
-	connectParams.MQTTVersion = MQTT_3_1_1;
-	connectParams.pClientID = (char*)"arn:aws:iot:us-east-1:617413614608:thing/TemperatureSensor";
-	connectParams.pHostURL = "a1rxr3meyz7der.iot.us-east-1.amazonaws.com";
-	connectParams.port = 8883;
-	connectParams.isWillMsgPresent = false;
-	connectParams.pRootCALocation = "root-CA.crt";
-	connectParams.pDeviceCertLocation = "TemperatureSensor.cert.pem";
-	connectParams.pDevicePrivateKeyLocation = "TemperatureSensor.private.key";
-	connectParams.mqttCommandTimeout_ms = 5000;
-	connectParams.tlsHandshakeTimeout_ms = 5000;
-	connectParams.isSSLHostnameVerify = true; // ensure this is set to true for production
-//	connectParams.disconnectHandler = disconnectCallbackHandler; 
 
     const app_uart_comm_params_t comm_params =
       {
@@ -411,17 +411,16 @@ int main(void)
     printf("main: flash size %d\n", (int) flash_size);
     /* Connect to router. */
     m2m_wifi_connect((char *)MAIN_WLAN_SSID, sizeof(MAIN_WLAN_SSID), MAIN_WLAN_AUTH, (char *)MAIN_WLAN_PSK, M2M_WIFI_CH_ALL);
+
+
+
+
     while (1) {
-        // /* Handle pending events from network controller. */
-        // m2m_wifi_handle_events(NULL);
-        // if (wifi_connected == M2M_WIFI_CONNECTED) {
-        //     printf("Connecting...");
-        //     rc = aws_iot_mqtt_connect(&connectParams);
-        //     if (NONE_ERROR != rc) {
-        //         printf("Error(%d) connecting to %s:%d", rc, connectParams.pHostURL, connectParams.port);
-        //         break;
-        //     }
-        // }
+        /* Handle pending events from network controller. */
+        m2m_wifi_handle_events(NULL);
+        if (wifi_connected == M2M_WIFI_CONNECTED) {
+            OpenAndConnectTcpClientSocket();
+        }
 
         /* Delay while the sensor completes a measurement */
         nrf_delay_ms(1000);
