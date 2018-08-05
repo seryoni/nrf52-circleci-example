@@ -1453,7 +1453,7 @@
         printf("  humidity: %d.\r\n\r\n", comp_data->humidity);
     #else
         // printf("  pressure: %d.\r\n", comp_data->pressure);
-        printf("  Temperature: %d.\r\n", comp_data->temperature);
+        printf("  Temperature: %ld.\r\n", comp_data->temperature);
         // printf("  humidity: %d.\r\n\r\n", comp_data->humidity);
     #endif
     }
@@ -1462,7 +1462,7 @@
     {
         int8_t rslt;
         uint8_t settings_sel;
-        struct bme280_data comp_data;
+        struct bme280_data comp_data = {0};
     
         /* Recommended mode of operation: Indoor navigation */
         dev->settings.osr_h = BME280_OVERSAMPLING_1X;
@@ -1490,7 +1490,7 @@
     void stream_sensor_data_normal_mode(struct bme280_dev *dev)
     {
         uint8_t settings_sel;
-        struct bme280_data comp_data;
+        // struct bme280_data comp_data;
     
         /* Recommended mode of operation: Indoor navigation */
         dev->settings.osr_h = BME280_OVERSAMPLING_1X;
@@ -1563,7 +1563,7 @@ void bme_start() {
 
 uint32_t bme280_get_temperature() {
         /* Delay while the sensor completes a measurement */
-        struct bme280_data comp_data;
+        struct bme280_data comp_data = {0};
         // dev.delay_ms(70);
         bme280_get_sensor_data(BME280_ALL, &comp_data, &dev);
         // print_sensor_data(&comp_data);

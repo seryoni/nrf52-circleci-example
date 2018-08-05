@@ -46,6 +46,17 @@
 				"temperature": 2
 				}
 			}
+		},
+		{
+			"name": "BUTTON1",
+			"id": 3,
+			"type": "Peripheral",
+			"class": "Button",
+			"config": {
+				"pins": {
+					"in": 13
+				}
+			}
 		}
 	]
 }

@@ -51,12 +51,17 @@
 #include <string.h>
 #include "app_uart.h"
 #include "nm_common.h"
+#include "app_timer.h"
 #include "m2m_wifi.h"
 #include "socket.h"
+#include "bsp.h"
 #include "main.h"
-//#include "AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_mqtt_interface.h"
 #include "bme280.h"
+#include "nrf_log.h"
+#include "nrf_log_ctrl.h"
+#include "nrf_log_default_backends.h"
 #if defined (UART_PRESENT)
+#include "nrf_drv_clock.h"
 #include "nrf_uart.h"
 #endif
 #if defined (UARTE_PRESENT)
@@ -65,6 +70,7 @@
 
 #define UART_TX_BUF_SIZE 256                                                        /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256								                         /**< UART RX buffer size. */
+
 
 void uart_error_handle(app_uart_evt_t * p_event)
 {
@@ -78,11 +84,70 @@ void uart_error_handle(app_uart_evt_t * p_event)
     }
 }
 
+/**
+ * @brief BSP events callback.
+ */
+void bsp_event_callback(bsp_event_t event)
+{
+    switch (event)
+    {
+        case BSP_EVENT_KEY_0:
+            button_callback_callad = true;
+            break;
+        default :
+            //Do nothing.
+            break;
+    }
+}
+
+/**@brief Function for initializing bsp module.
+ */
+void bsp_configuration()
+{
+    uint32_t err_code;
+    err_code = bsp_init(BSP_INIT_LED | BSP_INIT_BUTTONS, bsp_event_callback);
+    APP_ERROR_CHECK(err_code);
+}
+
+/**@brief Function for initializing low frequency clock.
+ */
+void clock_initialization()
+{
+    NRF_CLOCK->LFCLKSRC            = (CLOCK_LFCLKSRC_SRC_Xtal << CLOCK_LFCLKSRC_SRC_Pos);
+    NRF_CLOCK->EVENTS_LFCLKSTARTED = 0;
+    NRF_CLOCK->TASKS_LFCLKSTART    = 1;
+
+    while (NRF_CLOCK->EVENTS_LFCLKSTARTED == 0)
+    {
+        // Do nothing.
+    }
+}
 
 #include <string.h>
 #include "main.h"
 #include "m2m_wifi.h"
-#include "spi_flash.h"
+
+/**@brief Function for initializing log .
+ */
+void log_configuration() {
+    APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
+    NRF_LOG_DEFAULT_BACKENDS_INIT();
+}
+
+/**@brief Function for initializing bsp module.
+ */
+void button_configuration() {
+    clock_initialization();
+
+    uint32_t err_code = app_timer_init();
+    APP_ERROR_CHECK(err_code);
+
+//    NRF_LOG_INFO("BSP example started.");
+    bsp_configuration();
+
+    err_code = bsp_buttons_enable();
+    APP_ERROR_CHECK(err_code);
+}
 
 /** Message format definitions. */
 typedef struct s_msg_wifi_product {
@@ -163,10 +228,10 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
         }
 
             /* Message send */
-        case SOCKET_MSG_SEND: {   
+        case SOCKET_MSG_SEND: {
             nrf_delay_ms(4000);
             printf("TCP client: Send successful!\r\n");
-            send(tcp_client_socket, &msg_wifi_product, sizeof(t_msg_wifi_product), 0);    
+            send(tcp_client_socket, &msg_wifi_product, sizeof(t_msg_wifi_product), 0);
             break;
         }
 
@@ -352,38 +417,8 @@ static void wifi_cb(uint8_t u8MsgType, void *pvMsg)
 	}
 }
 
-////////////////
-// END OF APP //
-////////////////
 
-int main(void)
-{
-	uint32_t err_code;
-
-    const app_uart_comm_params_t comm_params =
-      {
-          RX_PIN_NUMBER,
-          TX_PIN_NUMBER,
-          RTS_PIN_NUMBER,
-          CTS_PIN_NUMBER,
-          APP_UART_FLOW_CONTROL_DISABLED,
-          false,
-          NRF_UARTE_BAUDRATE_115200
-      };
-
-    APP_UART_FIFO_INIT(&comm_params,
-                         UART_RX_BUF_SIZE,
-                         UART_TX_BUF_SIZE,
-                         uart_error_handle,
-                         APP_IRQ_PRIORITY_LOWEST,
-                         err_code);
-
-    APP_ERROR_CHECK(err_code);
-
-
-    bme_start();
-
-
+void wifi_configuration() {
     // APP
     tstrWifiInitParam param;
     int8_t ret;    /* Initialize the BSP. */
@@ -411,9 +446,19 @@ int main(void)
     printf("main: flash size %d\n", (int) flash_size);
     /* Connect to router. */
     m2m_wifi_connect((char *)MAIN_WLAN_SSID, sizeof(MAIN_WLAN_SSID), MAIN_WLAN_AUTH, (char *)MAIN_WLAN_PSK, M2M_WIFI_CH_ALL);
+}
 
 
+////////////////
+// END OF APP //
+////////////////
 
+int main(void)
+{
+    log_configuration();
+    //    button_configuration();
+   // bme_start();
+    wifi_configuration();
 
     while (1) {
         /* Handle pending events from network controller. */
@@ -422,8 +467,11 @@ int main(void)
             OpenAndConnectTcpClientSocket();
         }
 
-        /* Delay while the sensor completes a measurement */
-        nrf_delay_ms(1000);
-        printf("Temperature: %d\r\n", bme280_get_temperature());
+    //    nrf_delay_ms(50);
+    //    if(button_callback_callad) {
+    //        /* Delay while the sensor completes a measurement */
+    //        printf("Temperature: %d\r\n", bme280_get_temperature());
+    //        button_callback_callad = false;
+    //    }
     }
 }
