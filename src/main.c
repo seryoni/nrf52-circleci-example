@@ -92,11 +92,9 @@ void uart_error_handle(app_uart_evt_t * p_event)
  */
 void bsp_event_callback(bsp_event_t event)
 {
-//    NRF_LOG_INFO("bsp_event_callback1.\n");
     switch (event)
     {
         case BSP_EVENT_KEY_0: {
-//            NRF_LOG_INFO("bsp_event_callback.\n");
             button_callback_callad = true;
             break;
             }
@@ -425,6 +423,11 @@ void wifi_configuration() {
     /* Initialize socket module */
     socketInit();
     registerSocketCallback(socket_cb, NULL);
+
+    uint32 flash_size = spi_flash_get_size();
+    printf("main: flash size %d\n", (int) flash_size);
+    /* Connect to router. */
+    m2m_wifi_connect((char *)MAIN_WLAN_SSID, sizeof(MAIN_WLAN_SSID), MAIN_WLAN_AUTH, (char *)MAIN_WLAN_PSK, M2M_WIFI_CH_ALL);
 }
 
 
@@ -468,7 +471,7 @@ int main(void)
 //          NRF_UARTE_BAUDRATE_115200
 //      };
 //
-//    APP_UART_FIFO_INIT(&comm_params,
+//    APP_UART_FIFmO_INIT(&comm_params,
 //                         UART_RX_BUF_SIZE,
 //                         UART_TX_BUF_SIZE,
 //                         uart_error_handle,
@@ -480,10 +483,6 @@ int main(void)
     bme_start();
 //    wifi_configuration();
 
-//    uint32 flash_size = spi_flash_get_size();
-//    printf("main: flash size %d\n", (int) flash_size);
-    /* Connect to router. */
-//    m2m_wifi_connect((char *)MAIN_WLAN_SSID, sizeof(MAIN_WLAN_SSID), MAIN_WLAN_AUTH, (char *)MAIN_WLAN_PSK, M2M_WIFI_CH_ALL);
     while (1) {
         // /* Handle pending events from network controller. */
         // m2m_wifi_handle_events(NULL);

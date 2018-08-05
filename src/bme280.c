@@ -1565,9 +1565,7 @@ uint32_t bme280_get_temperature() {
         /* Delay while the sensor completes a measurement */
         struct bme280_data comp_data;
         // dev.delay_ms(70);
-
         bme280_get_sensor_data(BME280_ALL, &comp_data, &dev);
         // print_sensor_data(&comp_data);
-
         return comp_data.temperature;
 }
