@@ -2,6 +2,7 @@
 #include "jumper.h"
 #include "main.h"
 #include "unity.h"
+#include "button.h"
 
 
 #define BUTTON1 (13)
