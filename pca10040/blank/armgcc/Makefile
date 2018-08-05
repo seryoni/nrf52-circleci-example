@@ -33,12 +33,14 @@ SRC_FILES += \
   $(SDK_ROOT)/components/libraries/strerror/nrf_strerror.c \
   $(SDK_ROOT)/components/libraries/uart/retarget.c \
   $(SDK_ROOT)/components/drivers_nrf/common/nrf_drv_common.c \
+  $(SDK_ROOT)/components/drivers_nrf/twi_master/nrf_drv_twi.c \
   $(SDK_ROOT)/components/drivers_nrf/gpiote/nrf_drv_gpiote.c \
   $(SDK_ROOT)/components/drivers_nrf/spi_master/nrf_drv_spi.c \
   $(SDK_ROOT)/components/drivers_nrf/uart/nrf_drv_uart.c \
   $(SDK_ROOT)/components/libraries/bsp/bsp.c \
   $(SDK_ROOT)/components/libraries/bsp/bsp_nfc.c \
   $(PROJ_DIR)/src/main.c \
+  $(PROJ_DIR)/src/bme280.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_Syscalls_GCC.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
@@ -87,6 +89,7 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/libraries/experimental_section_vars \
   $(SDK_ROOT)/components/libraries/experimental_log/src \
   $(SDK_ROOT)/components/drivers_nrf/gpiote \
+  $(SDK_ROOT)/components/drivers_nrf/twi_master \
   $(SDK_ROOT)/external/segger_rtt \
   $(SDK_ROOT)/components/drivers_nrf/nrf_soc_nosd \
   ../config \

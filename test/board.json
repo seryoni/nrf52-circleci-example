@@ -30,6 +30,22 @@
                                         }
                                 ]
                          }
+		},
+		{
+			"name": "BME280",
+			"id": 2,
+			"type": "Peripheral",
+			"class": "BME280",
+			"config": {
+				"pins": {
+				"sda": 26,
+				"scl": 27
+				},
+				"generators": {
+				"humidity": 1,
+				"temperature": 2
+				}
+			}
 		}
 	]
 }
