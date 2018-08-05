@@ -6,3 +6,8 @@ venv
 root-CA.crt
 pca10040/TemperatureSensor.cert.pem
 pca10040/TemperatureSensor.private.key
+pca10040/.DS_Store
+pca10040/blank/.DS_Store
+pca10040/blank/armgcc/.DS_Store
+.DS_Store
+.idea/

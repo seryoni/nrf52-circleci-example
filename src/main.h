@@ -70,12 +70,7 @@ extern "C" {
 
 #define MAIN_WIFI_M2M_BUFFER_SIZE          40
 
-int button_callback_callad = 0;
-
-static void button_cb(void)
-{
-	button_callback_callad = 1;
-}
+void bsp_event_callback(bsp_event_t event);
 
 #ifdef __cplusplus
 }

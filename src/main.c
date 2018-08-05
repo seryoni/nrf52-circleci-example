@@ -48,11 +48,13 @@
 #include "nrf_delay.h"
 #include "boards.h"
 #include "app_error.h"
+#include "app_uart.h"
 #include <string.h>
 #include "app_uart.h"
 #include "nm_common.h"
 #include "m2m_wifi.h"
 #include "socket.h"
+#include "bsp.h"
 #include "main.h"
 #include "AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_mqtt_interface.h"
 #if defined (UART_PRESENT)
@@ -65,6 +67,9 @@
 #define UART_TX_BUF_SIZE 256                                                        /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256								                         /**< UART RX buffer size. */
 
+bool button_callback_callad = false;
+
+
 void uart_error_handle(app_uart_evt_t * p_event)
 {
     if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
@@ -74,6 +79,22 @@ void uart_error_handle(app_uart_evt_t * p_event)
     else if (p_event->evt_type == APP_UART_FIFO_ERROR)
     {
         APP_ERROR_HANDLER(p_event->data.error_code);
+    }
+}
+
+/**
+ * @brief BSP events callback.
+ */
+void bsp_event_callback(bsp_event_t event)
+{
+    switch (event)
+    {
+        case BSP_EVENT_KEY_0:
+            button_callback_callad = true;
+            break;
+        default :
+            //Do nothing.
+            break;
     }
 }
 
@@ -340,6 +361,9 @@ static void wifi_cb(uint8_t u8MsgType, void *pvMsg)
 int main(void)
 {
 	uint32_t err_code;
+    APP_ERROR_CHECK(bsp_init(BSP_INIT_BUTTONS, bsp_event_callback));
+    APP_ERROR_CHECK(bsp_buttons_enable());
+
     MQTTConnectParams connectParams = MQTTConnectParamsDefault;
 //    connectParams.port = 1883;
     IoT_Error_t rc = NONE_ERROR;
@@ -379,6 +403,10 @@ int main(void)
 
     APP_ERROR_CHECK(err_code);
 
+    printf("main: here!\n");
+    NRF_LOG_ERROR("No such reg type for read action");
+    NRF_LOG_FLUSH();
+
     // APP
     tstrWifiInitParam param;
     int8_t ret;    /* Initialize the BSP. */
@@ -407,7 +435,14 @@ int main(void)
     /* Connect to router. */
     m2m_wifi_connect((char *)MAIN_WLAN_SSID, sizeof(MAIN_WLAN_SSID), MAIN_WLAN_AUTH, (char *)MAIN_WLAN_PSK, M2M_WIFI_CH_ALL);
     while (1) {
+         printf("main: wait button pushed!\n");
+
         /* Handle pending events from network controller. */
+        while(!button_callback_callad) {
+            continue;
+        }
+        printf("main: button pushed!\n");
+        button_callback_callad = false;
         m2m_wifi_handle_events(NULL);
         if (wifi_connected == M2M_WIFI_CONNECTED) {
             printf("Connecting...");
