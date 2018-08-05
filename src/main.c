@@ -101,12 +101,12 @@ void bsp_event_callback(bsp_event_t event)
     }
 }
 
-/**@brief Function for initializing bsp module.
+/**@brief Function for initializing bsp handler.
  */
 void bsp_configuration()
 {
     uint32_t err_code;
-    err_code = bsp_init(BSP_INIT_LED | BSP_INIT_BUTTONS, bsp_event_callback);
+    err_code = bsp_init(BSP_INIT_NONE, bsp_event_callback);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -392,9 +392,9 @@ void OpenAndConnectTcpClientSocket() {
 int main(void)
 {
    log_configuration();
-   button_configuration();
    bme_start();
    wifi_configuration();
+   button_configuration();
 
     while (1) {
          /* Handle pending events from network controller. */
