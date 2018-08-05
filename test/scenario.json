@@ -9,13 +9,9 @@
         },
         {
             "id": 2,
-            "type": "File",
+            "type": "values",
             "config": {
-                "path": "bme_temperature_data",
-                "timing": {
-                    "changeInterval": 1,
-                    "changeIntervalUnit": "s"
-                }
+                 "validValues": [10.02, 25.13, 42.44, 50.01]
             }
         }
     ]

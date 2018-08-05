@@ -49,7 +49,7 @@ class TestEndToEnd(unittest.TestCase):
     def test_3_Integration_Test(self):
         self.push_button()
         self.vlab.run_for_ms(1000)
-        self.assertRegexpMatches('Temperature: 2700', self.read_from_aws())
+        self.assertEquals('2762', self.read_from_aws())
           
 
 if __name__ == '__main__':
