@@ -60,6 +60,7 @@
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
 #include "bme280.h"
+
 #include "nrf_drv_clock.h"
 #if defined (UART_PRESENT)
 #include "nrf_uart.h"
@@ -153,7 +154,7 @@ void button_configuration() {
 
 /** Message format definitions. */
 typedef struct s_msg_wifi_product {
-	uint8_t name[9];
+	uint8_t name[4];
 } t_msg_wifi_product;
 
 /** Message format declarations. */
@@ -195,7 +196,11 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
             tstrSocketConnectMsg *pstrConnect = (tstrSocketConnectMsg *)pvMsg;
             if (pstrConnect && pstrConnect->s8Error >= 0) {
                 printf("TCP client: Connection successful!\r\n");
-                send(tcp_client_socket, &msg_wifi_product, sizeof(t_msg_wifi_product), 0);
+                char buffer[4];
+                uint32_t temperature = bme280_get_temperature();
+                sprintf(buffer, "%d", temperature);
+                printf("Temp is: %s\n", buffer);
+                send(tcp_client_socket, &buffer, sizeof(buffer), 0);
             } else {
                 close_socket(&tcp_client_socket, "TCP client: Connection error!\r\n");
             }
@@ -204,9 +209,13 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
 
             /* Message send */
         case SOCKET_MSG_SEND: {   
-      //      nrf_delay_ms(4000);
+            nrf_delay_ms(4000);
             printf("TCP client: Send successful!\r\n");
-            send(tcp_client_socket, &msg_wifi_product, sizeof(t_msg_wifi_product), 0);    
+            char buffer[4];
+            uint32_t temperature = bme280_get_temperature();
+            sprintf(buffer, "%d", temperature);
+            printf("Temp is: %s\n", buffer);
+            send(tcp_client_socket, &buffer, sizeof(buffer), 0);    
             break;
         }
 
