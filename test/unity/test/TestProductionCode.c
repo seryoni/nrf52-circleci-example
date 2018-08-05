@@ -1,9 +1,10 @@
-#include "bme280.c"
 #include "jumper.h"
 #include "main.h"
 #include "unity.h"
-#include "button.h"
+#include "Func.h"
 
+
+extern void  parse_sensor_data(const uint8_t *reg_data, struct bme280_uncomp_data *uncomp_data);
 
 #define BUTTON1 (13)
 
@@ -25,8 +26,9 @@ void test_CallTheButtonCallback(void)
 
 void test_SetButtonPinLevel(void) 
 {
-    // TEST_ASSERT_FALSE(button_callback_callad);
-    // jumper_sudo_set_pin_level(BUTTON1, 0);
+    TEST_ASSERT_FALSE(button_callback_callad);
+    button_configuration();
+    jumper_sudo_set_pin_level(BUTTON1, 0);
     // TEST_ASSERT_TRUE(button_callback_callad); //todo: uncomment
 }
 

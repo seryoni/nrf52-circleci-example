@@ -21,7 +21,7 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(60)
         print('Button off')
         self.vlab.BUTTON1.off()
-        self.vlab.run_for_ms(800)
+        self.vlab.run_for_ms(1000)
         
     '''
     Black Box Test 
@@ -30,14 +30,14 @@ class TestEndToEnd(unittest.TestCase):
     def test_2_Black_Box(self):
         self.push_button()
         self.uart.wait_until_uart_receives('Temperature: 2762', timeout=1000)
-        # self.push_button()
-        # self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
-        # self.push_button()
-        # self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
-        # self.push_button()
-        # self.uart.wait_until_uart_receives('Temperature: 3001', timeout=1000)
-        # self.push_button()
-        # self.uart.wait_until_uart_receives('Temperature: 3586', timeout=1000)
+        self.push_button()
+        self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
+        self.push_button()
+        self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
+        self.push_button()
+        self.uart.wait_until_uart_receives('Temperature: 3001', timeout=1000)
+        self.push_button()
+        self.uart.wait_until_uart_receives('Temperature: 3586', timeout=1000)
 
 
 if __name__ == '__main__':
