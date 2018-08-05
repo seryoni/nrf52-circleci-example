@@ -15,18 +15,7 @@
 #include <stdio.h>
 #include <setjmp.h>
 #include "jumper.h"
-
-void uart_error_handle(app_uart_evt_t * p_event)
-{
-    if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
-    {
-        APP_ERROR_HANDLER(p_event->data.error_communication);
-    }
-    else if (p_event->evt_type == APP_UART_FIFO_ERROR)
-    {
-        APP_ERROR_HANDLER(p_event->data.error_code);
-    }
-}
+#include "Func.h"
 
 extern void setUp(void);
 extern void tearDown(void);
@@ -63,7 +52,6 @@ int main(void)
                        err_code);
 
     APP_ERROR_CHECK(err_code);
-    // bsp_board_leds_init();
 
     UnityBegin("test/TestProductionCode.c");
     
