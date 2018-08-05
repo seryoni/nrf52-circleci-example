@@ -37,6 +37,8 @@ myAWSIoTMQTTShadowClient.configureAutoReconnectBackoffTime(1, 32, 20)
 myAWSIoTMQTTShadowClient.configureConnectDisconnectTimeout(10)  # 10 sec
 myAWSIoTMQTTShadowClient.configureMQTTOperationTimeout(5)  # 5 sec
 
+MQTTClient = myAWSIoTMQTTShadowClient.getMQTTConnection()
+MQTTClient.configureOfflinePublishQueueing(10)
 # Connect to AWS IoT
 myAWSIoTMQTTShadowClient.connect()
 
@@ -45,29 +47,33 @@ deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWithName(thing
 
 def main():
     # open tcp server socket
-    TCP_IP = '127.0.0.1'
+    TCP_IP = '0.0.0.0'
     TCP_PORT = 5005
     BUFFER_SIZE = 20 
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((TCP_IP, TCP_PORT))
     s.listen(1)
-    print "Waiting for client"
-    conn, addr = s.accept()
-    print "Client connected!"
+    while True:
+        print "Waiting for client"
+        conn, addr = s.accept()
+        print "Client connected!"
+        connection_on = True
 
-    try:
-        while True:
-            data = conn.recv(BUFFER_SIZE)
-            print "received temprature value from device:", data
-            JSONPayload = '{"state":{"desired":{"temprature":' + str(data) + '}}}'
-            deviceShadowHandler.shadowUpdate(JSONPayload, customShadowCallback_Update, 5)
-            print "Data was sent to AWS"
-            sleep(5)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        print('Disconnecting')
+        try:
+            while connection_on:
+                data = conn.recv(BUFFER_SIZE)
+                if data:
+                    print "received temprature value from device:", data
+                    JSONPayload = '{"state":{"desired":{"temprature":' + str(data) + '}}}'
+                    deviceShadowHandler.shadowUpdate(JSONPayload, customShadowCallback_Update, 5)
+                    print "Data was sent to AWS"
+                else:
+                    connection_on = False
+        except KeyboardInterrupt:
+            pass
+        finally:
+            print('Disconnecting')
 
 if __name__ == '__main__':
     main()
