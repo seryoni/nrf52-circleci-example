@@ -196,11 +196,11 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
             tstrSocketConnectMsg *pstrConnect = (tstrSocketConnectMsg *)pvMsg;
             if (pstrConnect && pstrConnect->s8Error >= 0) {
                 printf("TCP client: Connection successful!\r\n");
-          //      uint32_t temp = 1222;
-            //    sprintf("try %u", 1222);
-
-                //msg_wifi_product.name =
-                send(tcp_client_socket, &msg_wifi_product, sizeof(t_msg_wifi_product), 0);
+                char buffer[4];
+                uint32_t temperature = bme280_get_temperature();
+                sprintf(buffer, "%d", temperature);
+                printf("Temp is: %s\n", buffer);
+                send(tcp_client_socket, &buffer, sizeof(buffer), 0);
             } else {
                 close_socket(&tcp_client_socket, "TCP client: Connection error!\r\n");
             }
@@ -211,8 +211,11 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
         case SOCKET_MSG_SEND: {   
             nrf_delay_ms(4000);
             printf("TCP client: Send successful!\r\n");
-            uint32_t temp = 1222;
-            send(tcp_client_socket, &msg_wifi_product, sizeof(t_msg_wifi_product), 0);    
+            char buffer[4];
+            uint32_t temperature = bme280_get_temperature();
+            sprintf(buffer, "%d", temperature);
+            printf("Temp is: %s\n", buffer);
+            send(tcp_client_socket, &buffer, sizeof(buffer), 0);    
             break;
         }
 
