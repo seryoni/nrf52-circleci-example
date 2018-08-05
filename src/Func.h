@@ -71,7 +71,6 @@
 
 #include "m2m_wifi.h"
 #include "spi_flash.h"
-#include "button.h"
 
 void uart_error_handle(app_uart_evt_t * p_event);
 
