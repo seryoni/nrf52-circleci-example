@@ -1,11 +1,11 @@
-PROJECT_NAME     := spi_pca10056
-TARGETS          := nrf52840_xxaa
+PROJECT_NAME     := spi_pca10040
+TARGETS          := nrf52832_xxaa
 OUTPUT_DIRECTORY := _build
 
-SDK_ROOT := ../../../../../..
-PROJ_DIR := ../../..
+SDK_ROOT := ../../../../nRF5_SDK_14.1.0_1dda907
+PROJ_DIR := ../../../..
 
-$(OUTPUT_DIRECTORY)/nrf52840_xxaa.out: \
+$(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
   LINKER_SCRIPT  := spi_gcc_nrf52.ld
 
 # Source files common to all targets
@@ -20,6 +20,8 @@ SRC_FILES += \
   $(SDK_ROOT)/components/libraries/button/app_button.c \
   $(SDK_ROOT)/components/libraries/util/app_error.c \
   $(SDK_ROOT)/components/libraries/util/app_error_weak.c \
+  $(SDK_ROOT)/components/libraries/fifo/app_fifo.c \
+  $(SDK_ROOT)/components/libraries/uart/app_uart_fifo.c \
   $(SDK_ROOT)/components/libraries/scheduler/app_scheduler.c \
   $(SDK_ROOT)/components/libraries/timer/app_timer.c \
   $(SDK_ROOT)/components/libraries/util/app_util_platform.c \
@@ -29,18 +31,40 @@ SRC_FILES += \
   $(SDK_ROOT)/external/fprintf/nrf_fprintf_format.c \
   $(SDK_ROOT)/components/libraries/experimental_memobj/nrf_memobj.c \
   $(SDK_ROOT)/components/libraries/strerror/nrf_strerror.c \
+  $(SDK_ROOT)/components/libraries/uart/retarget.c \
   $(SDK_ROOT)/components/drivers_nrf/common/nrf_drv_common.c \
+  $(SDK_ROOT)/components/drivers_nrf/twi_master/nrf_drv_twi.c \
   $(SDK_ROOT)/components/drivers_nrf/gpiote/nrf_drv_gpiote.c \
   $(SDK_ROOT)/components/drivers_nrf/spi_master/nrf_drv_spi.c \
   $(SDK_ROOT)/components/drivers_nrf/uart/nrf_drv_uart.c \
   $(SDK_ROOT)/components/libraries/bsp/bsp.c \
   $(SDK_ROOT)/components/libraries/bsp/bsp_nfc.c \
-  $(PROJ_DIR)/main.c \
+  $(PROJ_DIR)/src/main.c \
+  $(PROJ_DIR)/src/bme280.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_Syscalls_GCC.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
-  $(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf52840.S \
-  $(SDK_ROOT)/components/toolchain/system_nrf52840.c \
+  $(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf52.S \
+  $(SDK_ROOT)/components/toolchain/system_nrf52.c \
+  $(PROJ_DIR)/winc1500/driver/source/m2m_wifi.c \
+  $(PROJ_DIR)/winc1500/driver/source/m2m_hif.c \
+  $(PROJ_DIR)/winc1500/common/source/nm_common.c \
+  $(PROJ_DIR)/winc1500/bsp/source/nm_bsp_nrf52832.c \
+  $(PROJ_DIR)/winc1500/driver/source/nmdrv.c \
+  $(PROJ_DIR)/winc1500/driver/source/nmbus.c \
+  $(PROJ_DIR)/winc1500/socket/source/socket.c \
+  $(PROJ_DIR)/winc1500/driver/source/nmasic.c \
+  $(PROJ_DIR)/winc1500/driver/source/nmspi.c \
+  $(PROJ_DIR)/winc1500/AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_embedded_client_wrapper/aws_iot_mqtt_embedded_client_wrapper.c \
+  $(PROJ_DIR)/winc1500/AWS_SDK/aws_mqtt_embedded_client_lib/MQTTClient-C/src/MQTTClient.c \
+  $(PROJ_DIR)/winc1500/AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_embedded_client_wrapper/platform/network_winc1500tls_wrapper.c \
+  $(PROJ_DIR)/winc1500/spi_flash/source/spi_flash.c \
+  $(PROJ_DIR)/winc1500/bus_wrapper/source/nm_bus_wrapper_nrf52832.c \
+  $(PROJ_DIR)/winc1500/AWS_SDK/aws_mqtt_embedded_client_lib/MQTTPacket/src/MQTTPacket.c \
+  $(PROJ_DIR)/winc1500/AWS_SDK/aws_mqtt_embedded_client_lib/MQTTPacket/src/MQTTDeserializePublish.c \
+  $(PROJ_DIR)/winc1500/AWS_SDK/aws_mqtt_embedded_client_lib/MQTTPacket/src/MQTTSerializePublish.c \
+  $(PROJ_DIR)/winc1500/AWS_SDK/aws_mqtt_embedded_client_lib/MQTTPacket/src/MQTTConnectClient.c \
+  $(PROJ_DIR)/winc1500/AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_embedded_client_wrapper/platform/common/timer.c \
 
 # Include folders common to all targets
 INC_FOLDERS += \
@@ -49,6 +73,8 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/libraries/experimental_log \
   $(SDK_ROOT)/components/drivers_nrf/spi_master \
   $(PROJ_DIR) \
+  $(PROJ_DIR)/src \
+  $(SDK_ROOT)/components/libraries/fifo \
   $(SDK_ROOT)/components/libraries/timer \
   $(SDK_ROOT)/components/libraries/strerror \
   $(SDK_ROOT)/components/drivers_nrf/delay \
@@ -57,11 +83,13 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/drivers_nrf/uart \
   $(SDK_ROOT)/components/libraries/balloc \
   $(SDK_ROOT)/components/libraries/bsp \
+  $(SDK_ROOT)/components/libraries/uart \
   $(SDK_ROOT)/components/device \
   $(SDK_ROOT)/components/libraries/button \
   $(SDK_ROOT)/components/libraries/experimental_section_vars \
   $(SDK_ROOT)/components/libraries/experimental_log/src \
   $(SDK_ROOT)/components/drivers_nrf/gpiote \
+  $(SDK_ROOT)/components/drivers_nrf/twi_master \
   $(SDK_ROOT)/external/segger_rtt \
   $(SDK_ROOT)/components/drivers_nrf/nrf_soc_nosd \
   ../config \
@@ -73,29 +101,38 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/toolchain \
   $(SDK_ROOT)/components/drivers_nrf/common \
   $(SDK_ROOT)/external/fprintf \
+  $(PROJ_DIR)/winc1500/bsp/include \
+  $(PROJ_DIR)/winc1500/bus_wrapper/include \
+  $(PROJ_DIR)/winc1500/common/include \
+  $(PROJ_DIR)/winc1500/driver/include \
+  $(PROJ_DIR)/winc1500/spi_flash/include \
+  $(PROJ_DIR)/winc1500/socket/include \
+  $(PROJ_DIR)/winc1500 \
+
 
 # Libraries common to all targets
 LIB_FILES += \
 
 # Optimization flags
-OPT = -O3 -g3
+OPT = -O0 -g3
 # Uncomment the line below to enable link time optimization
 #OPT += -flto
 
 # C flags common to all targets
 CFLAGS += $(OPT)
-CFLAGS += -DBOARD_PCA10056
+CFLAGS += -DBOARD_PCA10040
 CFLAGS += -DCONFIG_GPIO_AS_PINRESET
-CFLAGS += -DNRF52840_XXAA
+CFLAGS += -DNRF52
+CFLAGS += -DNRF52832_XXAA
+CFLAGS += -DNRF52_PAN_74
 CFLAGS += -DSWI_DISABLE0
 CFLAGS += -mcpu=cortex-m4
 CFLAGS += -mthumb -mabi=aapcs
-CFLAGS +=  -Wall -Werror
+# CFLAGS +=  -Wall -Werror
 CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in a separate section, this allows linker to discard unused ones
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
 CFLAGS += -fno-builtin -fshort-enums 
-CFLAGS += -DBSP_DEFINES_ONLY
 
 # C++ flags common to all targets
 CXXFLAGS += $(OPT)
@@ -105,11 +142,12 @@ ASMFLAGS += -g3
 ASMFLAGS += -mcpu=cortex-m4
 ASMFLAGS += -mthumb -mabi=aapcs
 ASMFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
-ASMFLAGS += -DBOARD_PCA10056
+ASMFLAGS += -DBOARD_PCA10040
 ASMFLAGS += -DCONFIG_GPIO_AS_PINRESET
-ASMFLAGS += -DNRF52840_XXAA
+ASMFLAGS += -DNRF52
+ASMFLAGS += -DNRF52832_XXAA
+ASMFLAGS += -DNRF52_PAN_74
 ASMFLAGS += -DSWI_DISABLE0
-ASMFLAGS += -DBSP_DEFINES_ONLY
 
 # Linker flags
 LDFLAGS += $(OPT)
@@ -130,12 +168,12 @@ LIB_FILES += -lc -lnosys -lm
 .PHONY: default help
 
 # Default target - first one defined
-default: nrf52840_xxaa
+default: nrf52832_xxaa
 
 # Print all targets that can be built
 help:
 	@echo following targets are available:
-	@echo		nrf52840_xxaa
+	@echo		nrf52832_xxaa
 	@echo		sdk_config - starting external tool for editing sdk_config.h
 	@echo		flash      - flashing binary
 
@@ -149,7 +187,7 @@ $(foreach target, $(TARGETS), $(call define_target, $(target)))
 .PHONY: flash erase
 
 # Flash the program
-flash: $(OUTPUT_DIRECTORY)/nrf52840_xxaa.hex
+flash: $(OUTPUT_DIRECTORY)/nrf52832_xxaa.hex
 	@echo Flashing: $<
 	nrfjprog -f nrf52 --program $< --sectorerase
 	nrfjprog -f nrf52 --reset

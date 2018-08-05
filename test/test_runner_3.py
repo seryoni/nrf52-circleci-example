@@ -20,7 +20,8 @@ class TestEndToEnd(unittest.TestCase):
         pass
 
     '''
-    Integration Test - Set temperature, click a button and verify that the shadow device on AWS was updated with the same temperature
+    Integration Test
+    Set temperature, click a button and verify that the shadow device on AWS was updated with the same temperature
     '''
     def test_3_Integration_Test(self):
         # print('Button on')
