@@ -72,8 +72,6 @@
 #define UART_TX_BUF_SIZE 256                                                        /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256								                         /**< UART RX buffer size. */
 
-bool button_callback_callad = false;
-
 
 void uart_error_handle(app_uart_evt_t * p_event)
 {
@@ -94,10 +92,9 @@ void bsp_event_callback(bsp_event_t event)
 {
     switch (event)
     {
-        case BSP_EVENT_KEY_0: {
+        case BSP_EVENT_KEY_0:
             button_callback_callad = true;
             break;
-            }
         default :
             //Do nothing.
             break;

@@ -7,7 +7,4 @@ root-CA.crt
 TemperatureSensor.cert.pem
 TemperatureSensor.private.key
 .idea/
-pca10040/.DS_Store
-pca10040/blank/.DS_Store
-pca10040/blank/armgcc/.DS_Store
 .DS_Store
