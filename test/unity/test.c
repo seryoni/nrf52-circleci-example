@@ -32,7 +32,7 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_CallTheButtonCallback(void);
 extern void test_SetButtonPinLevel(void);
-
+extern void test_parse_sensor_data(void);
 
 void resetTest(void);
 void resetTest(void)
@@ -69,6 +69,7 @@ int main(void)
     
     RUN_TEST(test_CallTheButtonCallback);
     RUN_TEST(test_SetButtonPinLevel);
+    RUN_TEST(test_parse_sensor_data);
 
     int unity_code = UnityEnd();
     jumper_sudo_exit_with_exit_code(unity_code);

@@ -16,21 +16,27 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.stop()
         pass
 
-    '''
-    Black Box Test 
-    Set temperature, click a button and verify that the same temperature was printed to UART
-    '''
-    def test_2_Black_Box(self):
+    def push_button(self):
         # print('Button on')
         # self.vlab.BUTTON1.on()
         # self.vlab.run_for_ms(60)
         # print('Button off')
         # self.vlab.BUTTON1.off()
+        pass
 
-        self.uart.wait_until_uart_receives('Temperature: 2911')
-        self.uart.wait_until_uart_receives('Temperature: 3001')
-        self.uart.wait_until_uart_receives('Temperature: 3586')
-        self.assertTrue(True)
+    '''
+    Black Box Test 
+    Set temperature, click a button and verify that the same temperature was printed to UART
+    '''
+    def test_2_Black_Box(self):
+        self.push_button()
+        self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
+        self.push_button()
+        self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
+        self.push_button()
+        self.uart.wait_until_uart_receives('Temperature: 3001', timeout=1000)
+        self.push_button()
+        self.uart.wait_until_uart_receives('Temperature: 3586', timeout=1000)
 
 
 if __name__ == '__main__':
