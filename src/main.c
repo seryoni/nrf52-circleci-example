@@ -68,6 +68,10 @@
 #include "nrf_uarte.h"
 #endif
 
+#include "m2m_wifi.h"
+#include "spi_flash.h"
+#include "button.h"
+
 #define UART_TX_BUF_SIZE 256                                                        /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256								                         /**< UART RX buffer size. */
 
@@ -84,21 +88,6 @@ void uart_error_handle(app_uart_evt_t * p_event)
     }
 }
 
-/**
- * @brief BSP events callback.
- */
-void bsp_event_callback(bsp_event_t event)
-{
-    switch (event)
-    {
-        case BSP_EVENT_KEY_0:
-            button_callback_callad = true;
-            break;
-        default :
-            //Do nothing.
-            break;
-    }
-}
 
 /**@brief Function for initializing bsp module.
  */
@@ -122,11 +111,6 @@ void clock_initialization()
         // Do nothing.
     }
 }
-
-#include <string.h>
-#include "main.h"
-#include "m2m_wifi.h"
-#include "spi_flash.h"
 
 /**@brief Function for initializing lg module.
  */
@@ -383,21 +367,21 @@ void OpenAndConnectTcpClientSocket() {
 int main(void)
 {
     log_configuration();
-    // button_configuration();
+    button_configuration();
    bme_start();
-   wifi_configuration();
+//    wifi_configuration();
 
     while (1) {
          /* Handle pending events from network controller. */
-        m2m_wifi_handle_events(NULL);
-        if (wifi_connected == M2M_WIFI_CONNECTED) {
-            OpenAndConnectTcpClientSocket();
-        }
-        // nrf_delay_ms(50);
-        // if(button_callback_callad) {
-        //     /* Delay while the sensor completes a measurement */
-        //     printf("Temperature: %d\r\n", bme280_get_temperature());
-        //     button_callback_callad = false;
+        // m2m_wifi_handle_events(NULL);
+        // if (wifi_connected == M2M_WIFI_CONNECTED) {
+        //     OpenAndConnectTcpClientSocket();
         // }
+        nrf_delay_ms(50);
+        if(button_callback_callad) {
+            /* Delay while the sensor completes a measurement */
+            printf("Temperature: %d\r\n", bme280_get_temperature());
+            button_callback_callad = false;
+        }
     }
 }
