@@ -41,26 +41,60 @@
 ////////////
 // NORDIC //
 ////////////
-#include "Func.h"
 
-int main(void)
-{
-    log_configuration();
-    button_configuration();
-    bme_start();
-//    wifi_configuration();
+#include "nrf_drv_spi.h"
+#include "app_util_platform.h"
+#include "nrf_gpio.h"
+#include "nrf_delay.h"
+#include "boards.h"
+#include "app_error.h"
+#include <string.h>
+#include "app_uart.h"
+#include "nm_common.h"
+#include "app_timer.h"
+#include "m2m_wifi.h"
+#include "socket.h"
+#include "bsp.h"
+#include "main.h"
+#include "nrf_log.h"
+#include "nrf_log_ctrl.h"
+#include "nrf_log_default_backends.h"
+#include "bme280.h"
 
-    while (1) {
-         /* Handle pending events from network controller. */
-        // m2m_wifi_handle_events(NULL);
-        // if (wifi_connected == M2M_WIFI_CONNECTED) {
-        //     OpenAndConnectTcpClientSocket();
-        // }
-        nrf_delay_ms(50);
-        if(button_callback_callad) {
-            /* Delay while the sensor completes a measurement */
-            printf("Temperature: %d\r\n", bme280_get_temperature());
-            button_callback_callad = false;
-        }
-    }
-}
+#include "nrf_drv_clock.h"
+#if defined (UART_PRESENT)
+#include "nrf_uart.h"
+#endif
+#if defined (UARTE_PRESENT)
+#include "nrf_uarte.h"
+#endif
+
+#include "m2m_wifi.h"
+#include "spi_flash.h"
+#include "button.h"
+
+void uart_error_handle(app_uart_evt_t * p_event);
+
+/**@brief Function for initializing bsp module.
+ */
+void bsp_configuration();
+
+/**@brief Function for initializing low frequency clock.
+ */
+void clock_initialization();
+/**@brief Function for initializing lg module.
+ */
+void log_configuration();
+
+/**@brief Function for initializing bsp module.
+ */
+void button_configuration();
+
+void wifi_configuration();
+
+void OpenAndConnectTcpClientSocket();
+
+
+extern volatile bool button_callback_callad;
+
+void bsp_event_callback(bsp_event_t event);

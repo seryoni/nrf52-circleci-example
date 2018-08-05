@@ -57,7 +57,7 @@ extern "C" {
 #define MAIN_WIFI_M2M_PRODUCT_NAME        "1234"
 #define NO_ECHO                           "NO ECHO!"
 // #define MAIN_WIFI_M2M_SERVER_IP           0xc0a80164 //0xFFFFFFFF /* 255.255.255.255 */
-#define MAIN_WIFI_M2M_SERVER_IP           0x7f000001 // localhost
+#define MAIN_WIFI_M2M_SERVER_IP           0x6b17f9fa // localhost
 
 #define MAIN_WIFI_M2M_REPORT_INTERVAL     (1000)
 
