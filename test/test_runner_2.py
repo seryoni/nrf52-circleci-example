@@ -13,7 +13,7 @@ class TestEndToEnd(unittest.TestCase):
         print('Virtual device is running')
 
     def tearDown(self):
-        # self.vlab.stop()
+        self.vlab.stop()
         pass
 
     '''
