@@ -54,14 +54,14 @@ extern "C" {
 //#define MAIN_WLAN_SSID                    "DEMO_AP" /**< Destination SSID */
 #define MAIN_WLAN_AUTH                    M2M_WIFI_SEC_WPA_PSK /**< Security manner */
 //#define MAIN_WLAN_PSK                     "12345678" /**< Password for Destination SSID */
-#define MAIN_WIFI_M2M_PRODUCT_NAME        "HELLO :)"
+#define MAIN_WIFI_M2M_PRODUCT_NAME        "1234"
 #define NO_ECHO                           "NO ECHO!"
 // #define MAIN_WIFI_M2M_SERVER_IP           0xc0a80164 //0xFFFFFFFF /* 255.255.255.255 */
 #define MAIN_WIFI_M2M_SERVER_IP           0x7f000001 // localhost
 
 #define MAIN_WIFI_M2M_REPORT_INTERVAL     (1000)
 
-#define TCP_SERVER_PORT_AS_CLIENT         (6666)
+#define TCP_SERVER_PORT_AS_CLIENT         (5005)
 #define TCP_SERVER_PORT_AS_SERVER         (6667)
 
 #define UDP_SERVER_PORT_SEND              (7777)
