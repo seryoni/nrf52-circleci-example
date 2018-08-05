@@ -69,9 +69,15 @@
 #include "nrf_uarte.h"
 #endif
 
+#include "m2m_wifi.h"
+#include "spi_flash.h"
+#include "button.h"
+
 #define UART_TX_BUF_SIZE 256                                                        /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256								                         /**< UART RX buffer size. */
 
+
+uint32_t temperature;
 
 void uart_error_handle(app_uart_evt_t * p_event)
 {
@@ -85,28 +91,13 @@ void uart_error_handle(app_uart_evt_t * p_event)
     }
 }
 
-/**
- * @brief BSP events callback.
- */
-void bsp_event_callback(bsp_event_t event)
-{
-    switch (event)
-    {
-        case BSP_EVENT_KEY_0:
-            button_callback_callad = true;
-            break;
-        default :
-            //Do nothing.
-            break;
-    }
-}
 
 /**@brief Function for initializing bsp handler.
  */
 void bsp_configuration()
 {
     uint32_t err_code;
-    err_code = bsp_init(BSP_INIT_NONE, bsp_event_callback);
+    err_code = bsp_init(BSP_INIT_BUTTONS, bsp_event_callback);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -123,11 +114,6 @@ void clock_initialization()
         // Do nothing.
     }
 }
-
-#include <string.h>
-#include "main.h"
-#include "m2m_wifi.h"
-#include "spi_flash.h"
 
 /**@brief Function for initializing lg module.
  */
@@ -197,7 +183,6 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
             if (pstrConnect && pstrConnect->s8Error >= 0) {
                 printf("TCP client: Connection successful!\r\n");
                 char buffer[4];
-                uint32_t temperature = bme280_get_temperature();
                 sprintf(buffer, "%d", temperature);
                 printf("Temp is: %s\n", buffer);
                 send(tcp_client_socket, &buffer, sizeof(buffer), 0);
@@ -208,14 +193,8 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
         }
 
             /* Message send */
-        case SOCKET_MSG_SEND: {   
-            nrf_delay_ms(4000);
+        case SOCKET_MSG_SEND: {
             printf("TCP client: Send successful!\r\n");
-            char buffer[4];
-            uint32_t temperature = bme280_get_temperature();
-            sprintf(buffer, "%d", temperature);
-            printf("Temp is: %s\n", buffer);
-            send(tcp_client_socket, &buffer, sizeof(buffer), 0);    
             break;
         }
 
@@ -329,6 +308,30 @@ static void wifi_cb(uint8_t u8MsgType, void *pvMsg)
 	}
 }
 
+void OpenAndConnectTcpClientSocket() {
+    /* Socket address */
+    if (tcp_client_socket < 0) {
+        struct sockaddr_in addr;
+        addr.sin_family = AF_INET;
+        addr.sin_port = _htons(TCP_SERVER_PORT_AS_CLIENT);
+        addr.sin_addr.s_addr = _htonl(MAIN_WIFI_M2M_SERVER_IP);
+        /* Open tcp client socket. */
+        tcp_client_socket = socket(AF_INET, SOCK_STREAM, 0);
+
+        if (tcp_client_socket < 0) {
+            printf("main: failed to create TCP client socket error!\r\n");
+        } else {
+            /* Connect server */
+            printf("TCP client: Connecting to TCP socket\r\n");
+            int8_t ret = connect(tcp_client_socket, (struct sockaddr *) &addr, sizeof(struct sockaddr_in));
+            if (ret < 0) {
+                close(tcp_client_socket);
+                tcp_client_socket = -1;
+            }
+            nrf_delay_ms(50);
+        }
+    }
+}
 
 void wifi_configuration() {
     tstrWifiInitParam param;
@@ -360,28 +363,13 @@ void wifi_configuration() {
 }
 
 
-void OpenAndConnectTcpClientSocket() {
-    /* Socket address */
-    if (tcp_client_socket < 0) {
-        struct sockaddr_in addr;
-        addr.sin_family = AF_INET;
-        addr.sin_port = _htons(TCP_SERVER_PORT_AS_CLIENT);
-        addr.sin_addr.s_addr = _htonl(MAIN_WIFI_M2M_SERVER_IP);
-        /* Open tcp client socket. */
-        tcp_client_socket = socket(AF_INET, SOCK_STREAM, 0);
 
-        if (tcp_client_socket < 0) {
-            printf("main: failed to create TCP client socket error!\r\n");
-        } else {
-            /* Connect server */
-            printf("TCP client: Connecting to TCP socket\r\n");
-            int8_t ret = connect(tcp_client_socket, (struct sockaddr *) &addr, sizeof(struct sockaddr_in));
-            if (ret < 0) {
-                close(tcp_client_socket);
-                tcp_client_socket = -1;
-            }
-            nrf_delay_ms(50);
-        }
+void send_temperature() {
+    temperature = bme280_get_temperature();
+    printf("Temperature: %d\r\n", temperature);
+//    m2m_wifi_handle_events(NULL);
+    if (wifi_connected == M2M_WIFI_CONNECTED) {
+        OpenAndConnectTcpClientSocket();
     }
 }
 
@@ -398,15 +386,11 @@ int main(void)
 
     while (1) {
          /* Handle pending events from network controller. */
-//        m2m_wifi_handle_events(NULL);
-//        if (wifi_connected == M2M_WIFI_CONNECTED) {
-//            OpenAndConnectTcpClientSocket();
-//        }
-         nrf_delay_ms(50);
-         if(button_callback_callad) {
-             /* Delay while the sensor completes a measurement */
-             printf("Temperature: %d\r\n", bme280_get_temperature());
-             button_callback_callad = false;
-         }
+        nrf_delay_ms(50);
+        if(button_callback_callad) {
+            /* Delay while the sensor completes a measurement */
+            send_temperature();
+            button_callback_callad = false;
+        }
     }
 }
