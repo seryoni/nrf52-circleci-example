@@ -48,15 +48,20 @@
 #include "nrf_delay.h"
 #include "boards.h"
 #include "app_error.h"
-#include "app_uart.h"
 #include <string.h>
 #include "app_uart.h"
 #include "nm_common.h"
+#include "app_timer.h"
 #include "m2m_wifi.h"
 #include "socket.h"
 #include "bsp.h"
 #include "main.h"
+#include "nrf_log.h"
+#include "nrf_log_ctrl.h"
+#include "nrf_log_default_backends.h"
 #include "AWS_SDK/aws_iot_src/protocol/mqtt/aws_iot_mqtt_interface.h"
+#include "bme280.h"
+#include "nrf_drv_clock.h"
 #if defined (UART_PRESENT)
 #include "nrf_uart.h"
 #endif
@@ -87,22 +92,66 @@ void uart_error_handle(app_uart_evt_t * p_event)
  */
 void bsp_event_callback(bsp_event_t event)
 {
+//    NRF_LOG_INFO("bsp_event_callback1.\n");
     switch (event)
     {
-        case BSP_EVENT_KEY_0:
+        case BSP_EVENT_KEY_0: {
+//            NRF_LOG_INFO("bsp_event_callback.\n");
             button_callback_callad = true;
             break;
+            }
         default :
             //Do nothing.
             break;
     }
 }
 
+/**@brief Function for initializing bsp module.
+ */
+void bsp_configuration()
+{
+    uint32_t err_code;
+    err_code = bsp_init(BSP_INIT_LED | BSP_INIT_BUTTONS, bsp_event_callback);
+    APP_ERROR_CHECK(err_code);
+}
+
+/**@brief Function for initializing low frequency clock.
+ */
+void clock_initialization()
+{
+    NRF_CLOCK->LFCLKSRC            = (CLOCK_LFCLKSRC_SRC_Xtal << CLOCK_LFCLKSRC_SRC_Pos);
+    NRF_CLOCK->EVENTS_LFCLKSTARTED = 0;
+    NRF_CLOCK->TASKS_LFCLKSTART    = 1;
+
+    while (NRF_CLOCK->EVENTS_LFCLKSTARTED == 0)
+    {
+        // Do nothing.
+    }
+}
 
 #include <string.h>
 #include "main.h"
 #include "m2m_wifi.h"
 #include "spi_flash.h"
+
+/**@brief Function for initializing bsp module.
+ */
+void button_configuration() {
+
+    clock_initialization();
+
+    uint32_t err_code = app_timer_init();
+    APP_ERROR_CHECK(err_code);
+
+    APP_ERROR_CHECK(NRF_LOG_INIT(NULL));
+    NRF_LOG_DEFAULT_BACKENDS_INIT();
+
+//    NRF_LOG_INFO("BSP example started.");
+    bsp_configuration();
+
+    err_code = bsp_buttons_enable();
+    APP_ERROR_CHECK(err_code);
+}
 
 /** Message format definitions. */
 typedef struct s_msg_wifi_product {
@@ -354,6 +403,31 @@ static void wifi_cb(uint8_t u8MsgType, void *pvMsg)
 	}
 }
 
+
+void wifi_configuration() {
+    // APP
+    tstrWifiInitParam param;
+    // APP_ERROR_CHECK(nm_bsp_init());
+
+    /* Initialize Wi-Fi parameters structure. */
+    memset((uint8_t *)&param, 0, sizeof(tstrWifiInitParam));
+
+    /* Initialize Wi-Fi driver with data and status callbacks. */
+    param.pfAppWifiCb = wifi_cb;
+    int8_t ret = m2m_wifi_init(&param);
+    if (M2M_SUCCESS != ret) {
+    //  printf("main: m2m_wifi_init call error!(%d)\n", ret);
+        while (1) {
+        }
+    }
+
+    /* Request scan. */
+    /* Initialize socket module */
+    socketInit();
+    registerSocketCallback(socket_cb, NULL);
+}
+
+
 ////////////////
 // END OF APP //
 ////////////////
@@ -361,13 +435,13 @@ static void wifi_cb(uint8_t u8MsgType, void *pvMsg)
 int main(void)
 {
 	uint32_t err_code;
-    APP_ERROR_CHECK(bsp_init(BSP_INIT_BUTTONS, bsp_event_callback));
-    APP_ERROR_CHECK(bsp_buttons_enable());
+    button_configuration();
+
 
     MQTTConnectParams connectParams = MQTTConnectParamsDefault;
 //    connectParams.port = 1883;
     IoT_Error_t rc = NONE_ERROR;
-    
+
     connectParams.KeepAliveInterval_sec = 10;
 	connectParams.isCleansession = true;
 	connectParams.MQTTVersion = MQTT_3_1_1;
@@ -381,76 +455,51 @@ int main(void)
 	connectParams.mqttCommandTimeout_ms = 5000;
 	connectParams.tlsHandshakeTimeout_ms = 5000;
 	connectParams.isSSLHostnameVerify = true; // ensure this is set to true for production
-//	connectParams.disconnectHandler = disconnectCallbackHandler; 
+//	connectParams.disconnectHandler = disconnectCallbackHandler;
 
-    const app_uart_comm_params_t comm_params =
-      {
-          RX_PIN_NUMBER,
-          TX_PIN_NUMBER,
-          RTS_PIN_NUMBER,
-          CTS_PIN_NUMBER,
-          APP_UART_FLOW_CONTROL_DISABLED,
-          false,
-          NRF_UARTE_BAUDRATE_115200
-      };
+//    const app_uart_comm_params_t comm_params =
+//      {
+//          RX_PIN_NUMBER,
+//          TX_PIN_NUMBER,
+//          RTS_PIN_NUMBER,
+//          CTS_PIN_NUMBER,
+//          APP_UART_FLOW_CONTROL_DISABLED,
+//          false,
+//          NRF_UARTE_BAUDRATE_115200
+//      };
+//
+//    APP_UART_FIFO_INIT(&comm_params,
+//                         UART_RX_BUF_SIZE,
+//                         UART_TX_BUF_SIZE,
+//                         uart_error_handle,
+//                         APP_IRQ_PRIORITY_LOWEST,
+//                         err_code);
+//
+//    APP_ERROR_CHECK(err_code);
 
-    APP_UART_FIFO_INIT(&comm_params,
-                         UART_RX_BUF_SIZE,
-                         UART_TX_BUF_SIZE,
-                         uart_error_handle,
-                         APP_IRQ_PRIORITY_LOWEST,
-                         err_code);
+    bme_start();
+//    wifi_configuration();
 
-    APP_ERROR_CHECK(err_code);
-
-    printf("main: here!\n");
-    NRF_LOG_ERROR("No such reg type for read action");
-    NRF_LOG_FLUSH();
-
-    // APP
-    tstrWifiInitParam param;
-    int8_t ret;    /* Initialize the BSP. */
-
-    APP_ERROR_CHECK(nm_bsp_init());
-
-    /* Initialize Wi-Fi parameters structure. */
-    memset((uint8_t *)&param, 0, sizeof(tstrWifiInitParam));
-
-    /* Initialize Wi-Fi driver with data and status callbacks. */
-    param.pfAppWifiCb = wifi_cb;
-    ret = m2m_wifi_init(&param);
-    if (M2M_SUCCESS != ret) {
-        printf("main: m2m_wifi_init call error!(%d)\n", ret);
-        while (1) {
-        }
-    }
-
-    /* Request scan. */
-    /* Initialize socket module */
-    socketInit();
-    registerSocketCallback(socket_cb, NULL);
-
-    uint32 flash_size = spi_flash_get_size();
-    printf("main: flash size %d\n", (int) flash_size);
+//    uint32 flash_size = spi_flash_get_size();
+//    printf("main: flash size %d\n", (int) flash_size);
     /* Connect to router. */
-    m2m_wifi_connect((char *)MAIN_WLAN_SSID, sizeof(MAIN_WLAN_SSID), MAIN_WLAN_AUTH, (char *)MAIN_WLAN_PSK, M2M_WIFI_CH_ALL);
+//    m2m_wifi_connect((char *)MAIN_WLAN_SSID, sizeof(MAIN_WLAN_SSID), MAIN_WLAN_AUTH, (char *)MAIN_WLAN_PSK, M2M_WIFI_CH_ALL);
     while (1) {
-         printf("main: wait button pushed!\n");
-
-        /* Handle pending events from network controller. */
-        while(!button_callback_callad) {
-            continue;
-        }
-        printf("main: button pushed!\n");
-        button_callback_callad = false;
-        m2m_wifi_handle_events(NULL);
-        if (wifi_connected == M2M_WIFI_CONNECTED) {
-            printf("Connecting...");
-            rc = aws_iot_mqtt_connect(&connectParams);
-            if (NONE_ERROR != rc) {
-                printf("Error(%d) connecting to %s:%d", rc, connectParams.pHostURL, connectParams.port);
-                break;
-            }
+        // /* Handle pending events from network controller. */
+        // m2m_wifi_handle_events(NULL);
+        // if (wifi_connected == M2M_WIFI_CONNECTED) {
+        //     printf("Connecting...");
+        //     rc = aws_iot_mqtt_connect(&connectParams);
+        //     if (NONE_ERROR != rc) {
+        //         printf("Error(%d) connecting to %s:%d", rc, connectParams.pHostURL, connectParams.port);
+        //         break;
+        //     }
+        // }
+        nrf_delay_ms(50);
+        if(button_callback_callad) {
+            /* Delay while the sensor completes a measurement */
+            printf("Temperature: %d\r\n", bme280_get_temperature());
+            button_callback_callad = false;
         }
     }
 }
