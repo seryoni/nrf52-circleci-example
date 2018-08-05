@@ -63,7 +63,6 @@ int main(void)
                        err_code);
 
     APP_ERROR_CHECK(err_code);
-    // bsp_board_leds_init();
 
     UnityBegin("test/TestProductionCode.c");
     

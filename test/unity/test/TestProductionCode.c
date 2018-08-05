@@ -1,4 +1,3 @@
-#include "bme280.c"
 #include "jumper.h"
 #include "main.h"
 #include "unity.h"
