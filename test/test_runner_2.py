@@ -22,7 +22,7 @@ class TestEndToEnd(unittest.TestCase):
         print('Button off')
         self.vlab.BUTTON1.off()
         self.vlab.run_for_ms(1000)
-        
+
     '''
     Black Box Test 
     Set temperature, click a button and verify that the same temperature was printed to UART
