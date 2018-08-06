@@ -33,8 +33,6 @@ class TestEndToEnd(unittest.TestCase):
         self.push_button()
         self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
         self.push_button()
-        self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
-        self.push_button()
         self.uart.wait_until_uart_receives('Temperature: 3001', timeout=1000)
         self.push_button()
         self.uart.wait_until_uart_receives('Temperature: 3586', timeout=1000)
