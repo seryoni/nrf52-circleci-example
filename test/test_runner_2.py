@@ -21,7 +21,7 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(60)
         print('Button off')
         self.vlab.BUTTON1.off()
-        self.vlab.run_for_ms(600)
+        self.vlab.run_for_ms(200)
         
     '''
     Black Box Test 
@@ -36,6 +36,9 @@ class TestEndToEnd(unittest.TestCase):
         # self.uart.wait_until_uart_receives('Temperature: 3001', timeout=1000)
         self.push_button()
         # self.uart.wait_until_uart_receives('Temperature: 3586', timeout=1000)
+        self.push_button()
+        self.push_button()
+        self.push_button()
         self.push_button()
         self.push_button()
         self.push_button()

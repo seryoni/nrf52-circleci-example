@@ -9,9 +9,9 @@
         },
         {
             "id": 2,
-            "type": "values",
+            "type": "File",
             "config": {
-                 "validValues": [10.02, 25.13, 42.44, 50.01]
+                "path": "bme_temperature_data"
             }
         }
     ]
