@@ -90,9 +90,10 @@ void uart_error_handle(app_uart_evt_t * p_event)
 
 volatile bool button_callback_callad = false;
 
-void bsp_event_callback(bsp_event_t event)
-{
-   button_callback_callad = true;
+void bsp_event_callback(bsp_event_t event) {
+
+    // printf("bsp_event_callback\r\n");
+
     switch (event)
     {
         case BSP_EVENT_KEY_0:
@@ -177,7 +178,7 @@ static SOCKET tcp_client_socket = -1;
 static SOCKET tcp_server_socket = -1;
 
 /** Wi-Fi connection state */
-static uint8_t wifi_connected;
+volatile uint8_t wifi_connected;
 
 volatile uint32_t ms_ticks = 0;
 
@@ -195,11 +196,6 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
             tstrSocketConnectMsg *pstrConnect = (tstrSocketConnectMsg *)pvMsg;
             if (pstrConnect && pstrConnect->s8Error >= 0) {
                 printf("TCP client: Connection successful!\r\n");
-                char buffer[4];
-                uint32_t temperature = bme280_get_temperature();
-                sprintf(buffer, "%d", temperature);
-                printf("Temp is: %s\n", buffer);
-                send(tcp_client_socket, &buffer, sizeof(buffer), 0);
             } else {
                 close_socket(&tcp_client_socket, "TCP client: Connection error!\r\n");
             }
@@ -207,14 +203,8 @@ static void socket_cb_tcp_client_socket(uint8_t u8Msg, void *pvMsg){
         }
 
             /* Message send */
-        case SOCKET_MSG_SEND: {   
-            nrf_delay_ms(4000);
+        case SOCKET_MSG_SEND: {
             printf("TCP client: Send successful!\r\n");
-            char buffer[4];
-            uint32_t temperature = bme280_get_temperature();
-            sprintf(buffer, "%d", temperature);
-            printf("Temp is: %s\n", buffer);
-            send(tcp_client_socket, &buffer, sizeof(buffer), 0);    
             break;
         }
 
@@ -383,4 +373,13 @@ void OpenAndConnectTcpClientSocket() {
         }
     }
 }
+
+void send_temperature() {
+    uint32_t temperature = bme280_get_temperature() / 100; // 2 digits 
+    printf("Temperature: %d\r\n", temperature);
+    char buffer[2];
+    sprintf(buffer, "%d", temperature);
+    send(tcp_client_socket, &buffer, sizeof(buffer), 0);
+}
+
 

@@ -493,7 +493,7 @@ uint32_t bsp_init(uint32_t type, bsp_event_callback_t callback)
         if (err_code == NRF_SUCCESS)
         {
             err_code = app_button_init((app_button_cfg_t *)app_buttons,
-                                       BUTTONS_NUMBER,
+                                       2,
                                        APP_TIMER_TICKS(50));
         }
 
