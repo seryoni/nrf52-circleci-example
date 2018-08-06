@@ -22,7 +22,7 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(60)
         print('Button off')
         self.vlab.BUTTON1.off()
-        self.vlab.run_for_ms(200)
+        self.vlab.run_for_ms(1000)
 
         
     '''
@@ -35,7 +35,7 @@ class TestEndToEnd(unittest.TestCase):
             line = self.uart.read()
             match = re.search('(Temperature: )(\d{2})', line)
             temp = int(match.group(2))
-            self.assertTrue(20 < temp < 40)
+            self.assertTrue(20 <= temp <= 40)
 
 
 if __name__ == '__main__':
