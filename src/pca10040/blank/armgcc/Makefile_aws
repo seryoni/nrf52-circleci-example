@@ -1,7 +1,7 @@
 PROJECT_NAME     := spi_pca10040
 TARGETS          := nrf52832_xxaa
-OUTPUT_DIRECTORY := _build
- 
+OUTPUT_DIRECTORY := _build_2
+
 
 SDK_ROOT := ../../../../nRF5_SDK_14.1.0_1dda907
 PROJ_DIR := ../../../..
@@ -138,6 +138,7 @@ CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in a separate section, this allows linker to discard unused ones
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
 CFLAGS += -fno-builtin -fshort-enums 
+CFLAGS += -DATWINC_ENABLED
 
 # C++ flags common to all targets
 CXXFLAGS += $(OPT)

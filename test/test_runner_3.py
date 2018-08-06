@@ -9,14 +9,15 @@ import os
 client = boto3.client('iot-data',
                       region_name='us-east-1',
                       aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
-                      aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY")                      )
+                      aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY")
+                      )
 
 
 class TestEndToEnd(unittest.TestCase):
     def setUp(self):
         print(self.id().split('.')[-1])  # test name
         self.vlab = Vlab(working_directory=setting.dir, print_uart=True)
-        self.vlab.load(setting.fw_bin)
+        self.vlab.load(setting.fw_bin_aws)
         self.uart = self.vlab.uart
         self.vlab.run_for_ms(500)
         print('Virtual device is running')

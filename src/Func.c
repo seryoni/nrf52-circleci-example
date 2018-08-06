@@ -379,7 +379,9 @@ void send_temperature() {
     printf("Temperature: %d\r\n", temperature);
     char buffer[2];
     sprintf(buffer, "%d", temperature);
+    #ifdef ATWINC_ENABLED
     send(tcp_client_socket, &buffer, sizeof(buffer), 0);
+    #endif
 }
 
 
