@@ -1,6 +1,7 @@
 from jumper.vlab import Vlab
 import unittest
 import setting
+import re
 
 
 class TestEndToEnd(unittest.TestCase):
@@ -21,21 +22,21 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(60)
         print('Button off')
         self.vlab.BUTTON1.off()
-        self.vlab.run_for_ms(1000)
+        self.vlab.run_for_ms(200)
 
+        
     '''
     Black Box Test 
     Set temperature, click a button and verify that the same temperature was printed to UART
     '''
     def test_2_Black_Box(self):
-        self.push_button()
-        self.uart.wait_until_uart_receives('Temperature: 2762', timeout=1000)
-        self.push_button()
-        self.uart.wait_until_uart_receives('Temperature: 2911', timeout=1000)
-        self.push_button()
-        self.uart.wait_until_uart_receives('Temperature: 3001', timeout=1000)
-        self.push_button()
-        self.uart.wait_until_uart_receives('Temperature: 3586', timeout=1000)
+        for i in range(20):
+            self.push_button()
+            line = self.uart.read()
+            match = re.search('(Temperature: )(\d{2})', line)
+            temp = int(match.group(2))
+            self.assertGreater(temp, 20)
+            self.assertLess(temp, 40)
 
 
 if __name__ == '__main__':

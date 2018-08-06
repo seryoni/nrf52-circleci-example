@@ -375,9 +375,9 @@ void OpenAndConnectTcpClientSocket() {
 }
 
 void send_temperature() {
-    uint32_t temperature = bme280_get_temperature();
+    uint32_t temperature = bme280_get_temperature() / 100; // 2 digits 
     printf("Temperature: %d\r\n", temperature);
-    char buffer[4];
+    char buffer[2];
     sprintf(buffer, "%d", temperature);
     send(tcp_client_socket, &buffer, sizeof(buffer), 0);
 }
