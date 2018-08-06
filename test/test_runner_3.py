@@ -4,6 +4,7 @@ import setting
 import boto3
 import json
 import os
+import re
 
 client = boto3.client('iot-data',
                       region_name='us-east-1',
@@ -47,9 +48,12 @@ class TestEndToEnd(unittest.TestCase):
     def test_3_Integration_Test(self):
         for i in range(20):
             self.push_button()
+            match = re.search('(Temperature: )(\d{2})', self.uart.read())
+            temp_uaet = int(match.group(2))
             temp_aws = int(self.read_from_aws())
             print('Temperature is: ' + str(temp_aws))
             self.assertTrue(20 <= temp_aws <= 40)
+            self.assertEquals(temp_aws, temp_uaet)
 
 
 if __name__ == '__main__':
