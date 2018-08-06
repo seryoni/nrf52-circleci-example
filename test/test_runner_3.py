@@ -32,7 +32,7 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(60)
         print('Button off')
         self.vlab.BUTTON1.off()
-        self.vlab.run_for_ms(200)
+        self.vlab.run_for_ms(1000)
 
     def read_from_aws(self):
         response = client.get_thing_shadow(thingName='TemperatureSensor')
@@ -52,7 +52,7 @@ class TestEndToEnd(unittest.TestCase):
             match = re.search('(Temperature: )(\d{2})', self.uart.read())
             temp_uart = int(match.group(2))
             success = False
-            for j in range(10):
+            for j in range(60):
                 temp_aws = int(self.read_from_aws())
                 print('Temperature from aws: ' + str(temp_aws))
                 success = temp_uart == temp_aws
