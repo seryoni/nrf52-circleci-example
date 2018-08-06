@@ -49,11 +49,11 @@ class TestEndToEnd(unittest.TestCase):
         for i in range(20):
             self.push_button()
             match = re.search('(Temperature: )(\d{2})', self.uart.read())
-            temp_uaet = int(match.group(2))
+            temp_uart = int(match.group(2))
             temp_aws = int(self.read_from_aws())
             print('Temperature is: ' + str(temp_aws))
             self.assertTrue(20 <= temp_aws <= 40)
-            self.assertEquals(temp_aws, temp_uaet)
+            self.assertEquals(temp_aws, temp_uart)
 
 
 if __name__ == '__main__':
