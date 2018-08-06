@@ -26,8 +26,8 @@ jobs:
                 name: build
                 command: make -C src/pca10040/blank/armgcc/
             - run:
-                name: build-2
-                command: make -C src/pca10040_2/blank/armgcc/
+                name: build-2 (ATWINC_ENABLED)
+                command: make -C src/pca10040/blank/armgcc/ -f Makefile_aws
             - run:
                 name: build-unit-test
                 command: make -C test/unity/pca10040/blank/armgcc/ 
@@ -47,7 +47,7 @@ jobs:
                 root: .
                 paths:
                     - src/pca10040/blank/armgcc/_build
-                    - src/pca10040_2/blank/armgcc/_build
+                    - src/pca10040/blank/armgcc/_build_2
                     - test/unity/pca10040/blank/armgcc/_build
                     - venv
                     - src/pca10040/TemperatureSensor.cert.pem
