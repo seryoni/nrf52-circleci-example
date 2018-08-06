@@ -27,7 +27,7 @@ jobs:
                 command: make -C src/pca10040/blank/armgcc/
             - run:
                 name: build-2 (ATWINC_ENABLED)
-                command: make -C src/pca10040/blank/armgcc/ -f Makefile_aws
+                command: CFLAGS+=-DATWINC_ENABLED make -C src/pca10040/blank/armgcc/ OUTPUT_DIRECTORY=_build_2
             - run:
                 name: build-unit-test
                 command: make -C test/unity/pca10040/blank/armgcc/ 
@@ -137,10 +137,6 @@ workflows:
                 requires:
                     - build
             - test-3-aws:
-                context: atwinc-aws-demo
-                requires:
-                    - build
-            - test-4:
                 context: atwinc-aws-demo
                 requires:
                     - build
