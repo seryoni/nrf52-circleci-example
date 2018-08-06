@@ -48,6 +48,7 @@ class TestEndToEnd(unittest.TestCase):
         for i in range(20):
             self.push_button()
             temp_aws = int(self.read_from_aws())
+            print('Temperature is: ' + str(temp_aws))
             self.assertTrue(20 <= temp_aws <= 40)
 
 
