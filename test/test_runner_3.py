@@ -1,37 +1,55 @@
-import os
-from time import sleep
 from jumper.vlab import Vlab
 import unittest
+import setting
+import boto3
+import json
+import os
 
-dir = os.path.dirname(os.path.abspath(__file__))
-fw_bin = os.path.join(dir, '..', 'pca10040', 'blank', 'armgcc', '_build', 'nrf52832_xxaa.bin')
+
+client = boto3.client('iot-data',
+                      region_name='us-east-1',
+                      aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+                      aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
+                      # aws_session_token=SESSION_TOKEN,
+                      )
 
 
 class TestEndToEnd(unittest.TestCase):
     def setUp(self):
         print(self.id().split('.')[-1])  # test name
-        # self.vlab = Vlab(working_directory=dir, print_uart=True)
-        # self.vlab.load(fw_bin)
-        # self.vlab.run_for_ms(500)
-        # print('Virtual device is running')
+        self.vlab = Vlab(working_directory=setting.dir, print_uart=True)
+        self.vlab.load(setting.fw_bin)
+        self.uart = self.vlab.uart
+        self.vlab.run_for_ms(500)
+        print('Virtual device is running')
 
     def tearDown(self):
-        # self.vlab.stop()
-        pass
+        self.vlab.stop()
+
+    def push_button(self):
+        print('Button on')
+        self.vlab.BUTTON1.on()
+        self.vlab.run_for_ms(60)
+        print('Button off')
+        self.vlab.BUTTON1.off()
+        self.vlab.run_for_ms(600)
+
+    def read_from_aws(self):
+        response = client.get_thing_shadow(thingName='TemperatureSensor')
+        streaming_body = response["payload"]
+        raw_data_bytes = streaming_body.read()
+        raw_data_string = raw_data_bytes.decode('utf-8')  # Python 3.x specific
+        json_state = json.loads(raw_data_string)
+        return json_state['state']['desired']['temprature']
 
     '''
     Integration Test
     Set temperature, click a button and verify that the shadow device on AWS was updated with the same temperature
     '''
     def test_3_Integration_Test(self):
-        # print('Button on')
-        # self.vlab.BUTTON1.on()
-        # self.vlab.run_for_ms(60)
-        # print('Button off')
-        # self.vlab.BUTTON1.off()
-
-        self.assertEqual(345, 345)  # in this case we are going to poll for the pin level
-        self.assertTrue(True)
+        self.push_button()
+        self.vlab.run_for_ms(1000)
+        self.assertEquals('2762', self.read_from_aws())
           
 
 if __name__ == '__main__':

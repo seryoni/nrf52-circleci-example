@@ -60,7 +60,7 @@ extern "C" {
 // #define CONF_WINC_PIN_CHIP_ENABLE		(26)
 // #define CONF_WINC_PIN_WAKE				(27)
 
-#define CONF_WINC_PIN_RESET				(13)
+#define CONF_WINC_PIN_RESET				(11)
 #define CONF_WINC_PIN_CHIP_ENABLE		(14)
 #define CONF_WINC_PIN_WAKE				(10)
 

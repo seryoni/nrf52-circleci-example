@@ -116,7 +116,7 @@
      *  @param[out] uncomp_data : Contains the uncompensated pressure, temperature
      *  and humidity data.
      */
-    static void parse_sensor_data(const uint8_t *reg_data, struct bme280_uncomp_data *uncomp_data);
+    void parse_sensor_data(const uint8_t *reg_data, struct bme280_uncomp_data *uncomp_data);
     
     /*!
      * @brief This internal API is used to compensate the pressure and/or
@@ -822,7 +822,7 @@
      *  @brief This internal API is used to parse the pressure, temperature and
      *  humidity data and store it in the bme280_uncomp_data structure instance.
      */
-    static void parse_sensor_data(const uint8_t *reg_data, struct bme280_uncomp_data *uncomp_data)
+    void parse_sensor_data(const uint8_t *reg_data, struct bme280_uncomp_data *uncomp_data)
     {
         /* Variables to store the sensor data */
         uint32_t data_xlsb;

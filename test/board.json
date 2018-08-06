@@ -5,7 +5,7 @@
 			"name": "nrf52832",
 			"id": 0,
 			"type": "MCU",
-			"class": "MCU"
+			"class": "Nrf52832"
 		},
 		{
 			"name": "wifi",
@@ -21,7 +21,7 @@
 					"chip_en": 14,
 					"wake": 10,
 					"irq": 12,
-					"reset": 13
+					"reset": 11
 				},
 			        "networks": [
                                         {

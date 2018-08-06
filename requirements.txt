@@ -1,3 +1,4 @@
 jumper
 nose
 rednose
+boto3

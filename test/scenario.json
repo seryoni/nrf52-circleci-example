@@ -9,13 +9,11 @@
         },
         {
             "id": 2,
-            "type": "File",
+            "type": "sin",
             "config": {
-                "path": "bme_temperature_data",
-                "timing": {
-                    "changeInterval": 1,
-                    "changeIntervalUnit": "s"
-                }
+                "min": 20,
+                "max": 40,
+                "sinFrequency": 0.1
             }
         }
     ]
