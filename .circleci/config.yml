@@ -27,7 +27,7 @@ jobs:
                 command: make -C src/pca10040/blank/armgcc/
             - run:
                 name: build-2 (ATWINC_ENABLED)
-                command: CFLAGS+=-DATWINC_ENABLED make -C ../src/pca10040/blank/armgcc OUTPUT_DIRECTORY=_build_2
+                command: CFLAGS+=-DATWINC_ENABLED make -C src/pca10040/blank/armgcc/ OUTPUT_DIRECTORY=_build_2
             - run:
                 name: build-unit-test
                 command: make -C test/unity/pca10040/blank/armgcc/ 
