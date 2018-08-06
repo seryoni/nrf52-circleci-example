@@ -58,7 +58,7 @@ class TestEndToEnd(unittest.TestCase):
                 success = temp_uart == temp_aws
                 if success:
                     break
-                sleep(0.1)
+                sleep(1)
             # self.assertTrue(20 <= temp_aws <= 40)
             self.assertTrue(success)
 
