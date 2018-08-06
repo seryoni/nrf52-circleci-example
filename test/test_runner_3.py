@@ -4,7 +4,6 @@ import setting
 import boto3
 import json
 import os
-import re
 
 client = boto3.client('iot-data',
                       region_name='us-east-1',
