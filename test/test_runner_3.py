@@ -9,9 +9,7 @@ import os
 client = boto3.client('iot-data',
                       region_name='us-east-1',
                       aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
-                      aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
-                      # aws_session_token=SESSION_TOKEN,
-                      )
+                      aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY")                      )
 
 
 class TestEndToEnd(unittest.TestCase):
@@ -47,10 +45,11 @@ class TestEndToEnd(unittest.TestCase):
     Set temperature, click a button and verify that the shadow device on AWS was updated with the same temperature
     '''
     def test_3_Integration_Test(self):
-        self.push_button()
-        self.vlab.run_for_ms(1000)
-        self.assertEquals('2762', self.read_from_aws())
-          
+        for i in range(20):
+            self.push_button()
+            temp = int(self.read_from_aws())
+            self.assertTrue(20 <= temp <= 40)
+
 
 if __name__ == '__main__':
     unittest.main()
