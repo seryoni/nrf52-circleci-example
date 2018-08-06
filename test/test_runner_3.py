@@ -52,7 +52,7 @@ class TestEndToEnd(unittest.TestCase):
             match = re.search('(Temperature: )(\d{2})', self.uart.read())
             temp_uart = int(match.group(2))
             success = False
-            for j in range(10):
+            for j in range(100):
                 temp_aws = int(self.read_from_aws())
                 print('Temperature from aws: ' + str(temp_aws))
                 success = temp_uart == temp_aws

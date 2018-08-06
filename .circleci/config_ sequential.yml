@@ -85,7 +85,7 @@ jobs:
                 name: test-2-uart (Black Box Test)
                 command: |
                     . venv/bin/activate
-                    nosetests --rednose -v test/test_runner_2.py
+                    nosetests --nocapture --rednose -v test/test_runner_2.py
     test-3-aws:
         docker:
             - image: circleci/python
@@ -102,25 +102,7 @@ jobs:
                 name: test-3-aws (Integration Test)
                 command: |
                     . venv/bin/activate
-                    nosetests --rednose -v test/test_runner_3.py
-
-    test-4:
-        docker:
-            - image: circleci/python
-        steps:
-            - checkout
-            - attach_workspace:
-                at: .
-            - run:
-                name: config
-                command: |
-                    mkdir ~/.jumper/
-                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
-            - run:
-                name: test-4
-                command: |
-                    . venv/bin/activate
-                    nosetests --rednose -v test/test_runner_4.py
+                    nosetests --nocapture --rednose -v test/test_runner_3.py
 
 workflows:
     version: 2
