@@ -90,9 +90,10 @@ void uart_error_handle(app_uart_evt_t * p_event)
 
 volatile bool button_callback_callad = false;
 
-void bsp_event_callback(bsp_event_t event)
-{
-   button_callback_callad = true;
+void bsp_event_callback(bsp_event_t event) {
+
+    // printf("bsp_event_callback\r\n");
+
     switch (event)
     {
         case BSP_EVENT_KEY_0:
