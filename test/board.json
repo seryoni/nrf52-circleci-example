@@ -21,7 +21,7 @@
 					"chip_en": 14,
 					"wake": 10,
 					"irq": 12,
-					"reset": 13
+					"reset": 11
 				},
 			        "networks": [
                                         {

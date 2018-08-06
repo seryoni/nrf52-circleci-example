@@ -60,7 +60,6 @@ int main(void)
     while (1) {
          /* Handle pending events from network controller. */
         nrf_delay_ms(50);
-        m2m_wifi_handle_events(NULL);
         if(button_callback_callad) {
             send_temperature();
             button_callback_callad = false;

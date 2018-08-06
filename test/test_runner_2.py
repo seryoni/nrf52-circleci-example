@@ -22,7 +22,7 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(60)
         print('Button off')
         self.vlab.BUTTON1.off()
-        self.vlab.run_for_ms(100)
+        self.vlab.run_for_ms(200)
 
         
     '''
