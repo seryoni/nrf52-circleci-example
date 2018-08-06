@@ -27,7 +27,7 @@ jobs:
                 command: make -C src/pca10040/blank/armgcc/
             - run:
                 name: build-2
-                command: make -C src/pca10040_2/blank/armgcc/ CFLAGS=-ATWINC_ENABLED
+                command: make -C src/pca10040_2/blank/armgcc/
             - run:
                 name: build-unit-test
                 command: make -C test/unity/pca10040/blank/armgcc/ 
