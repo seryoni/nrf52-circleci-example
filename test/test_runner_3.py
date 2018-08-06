@@ -32,7 +32,7 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(60)
         print('Button off')
         self.vlab.BUTTON1.off()
-        self.vlab.run_for_ms(200)
+        self.vlab.run_for_ms(1000)
 
     def read_from_aws(self):
         response = client.get_thing_shadow(thingName='TemperatureSensor')
