@@ -3753,9 +3753,9 @@ Discarded input sections
  .text.uart_error_handle
                 0x0000000000000000       0x36 _build_2/nrf52832_xxaa/Func.c.o
  .data.msg_wifi_product
-                0x0000000000000000        0x4 _build_2/nrf52832_xxaa/Func.c.o
+                0x0000000000000000        0x9 _build_2/nrf52832_xxaa/Func.c.o
  .data.msg_no_ecoh
-                0x0000000000000000        0x4 _build_2/nrf52832_xxaa/Func.c.o
+                0x0000000000000000        0x9 _build_2/nrf52832_xxaa/Func.c.o
  .bss.tcpRecvBuffer
                 0x0000000000000000       0x28 _build_2/nrf52832_xxaa/Func.c.o
  .bss.udpRecvBuffer

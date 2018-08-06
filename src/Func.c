@@ -154,7 +154,7 @@ void button_configuration() {
 
 /** Message format definitions. */
 typedef struct s_msg_wifi_product {
-	uint8_t name[4];
+	uint8_t name[9];
 } t_msg_wifi_product;
 
 /** Message format declarations. */
