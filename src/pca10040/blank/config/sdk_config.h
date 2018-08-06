@@ -86,22 +86,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -142,22 +126,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -198,22 +166,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -254,22 +206,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -327,22 +263,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -383,22 +303,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -439,22 +343,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -495,22 +383,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -568,22 +440,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -624,22 +480,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -680,22 +520,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -736,22 +560,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -809,22 +617,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -865,22 +657,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -921,22 +697,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -977,22 +737,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -1050,22 +794,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -1106,22 +834,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -1162,22 +874,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -1218,22 +914,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -1291,22 +971,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -1347,22 +1011,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -1403,22 +1051,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -1459,22 +1091,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -1532,22 +1148,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -1588,22 +1188,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -1644,22 +1228,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -1700,22 +1268,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -1773,22 +1325,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -1829,22 +1365,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -1885,22 +1405,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -1941,22 +1445,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -2014,22 +1502,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SCK_PIN
@@ -2070,22 +1542,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MISO_PIN
@@ -2126,22 +1582,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_MOSI_PIN
@@ -2182,22 +1622,6 @@
 // <29=> 29 (P0.29) 
 // <30=> 30 (P0.30) 
 // <31=> 31 (P0.31) 
-// <32=> 32 (P1.0) 
-// <33=> 33 (P1.1) 
-// <34=> 34 (P1.2) 
-// <35=> 35 (P1.3) 
-// <36=> 36 (P1.4) 
-// <37=> 37 (P1.5) 
-// <38=> 38 (P1.6) 
-// <39=> 39 (P1.7) 
-// <40=> 40 (P1.8) 
-// <41=> 41 (P1.9) 
-// <42=> 42 (P1.10) 
-// <43=> 43 (P1.11) 
-// <44=> 44 (P1.12) 
-// <45=> 45 (P1.13) 
-// <46=> 46 (P1.14) 
-// <47=> 47 (P1.15) 
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
@@ -2228,6 +1652,137 @@
 //==========================================================
 
 // <h> nRF_Drivers 
+// <e> UART_ENABLED - nrf_drv_uart - UART/UARTE peripheral driver
+//==========================================================
+#ifndef UART_ENABLED
+#define UART_ENABLED 1
+#endif
+// <o> UART_DEFAULT_CONFIG_HWFC  - Hardware Flow Control
+ 
+// <0=> Disabled 
+// <1=> Enabled 
+
+#ifndef UART_DEFAULT_CONFIG_HWFC
+#define UART_DEFAULT_CONFIG_HWFC 0
+#endif
+
+// <o> UART_DEFAULT_CONFIG_PARITY  - Parity
+ 
+// <0=> Excluded 
+// <14=> Included 
+
+#ifndef UART_DEFAULT_CONFIG_PARITY
+#define UART_DEFAULT_CONFIG_PARITY 0
+#endif
+
+// <o> UART_DEFAULT_CONFIG_BAUDRATE  - Default Baudrate
+ 
+// <323584=> 1200 baud 
+// <643072=> 2400 baud 
+// <1290240=> 4800 baud 
+// <2576384=> 9600 baud 
+// <3862528=> 14400 baud 
+// <5152768=> 19200 baud 
+// <7716864=> 28800 baud 
+// <10289152=> 38400 baud 
+// <15400960=> 57600 baud 
+// <20615168=> 76800 baud 
+// <30801920=> 115200 baud 
+// <61865984=> 230400 baud 
+// <67108864=> 250000 baud 
+// <121634816=> 460800 baud 
+// <251658240=> 921600 baud 
+// <268435456=> 1000000 baud 
+
+#ifndef UART_DEFAULT_CONFIG_BAUDRATE
+#define UART_DEFAULT_CONFIG_BAUDRATE 30801920
+#endif
+
+// <o> UART_DEFAULT_CONFIG_IRQ_PRIORITY  - Interrupt priority
+ 
+
+// <i> Priorities 0,2 (nRF51) and 0,1,4,5 (nRF52) are reserved for SoftDevice
+// <0=> 0 (highest) 
+// <1=> 1 
+// <2=> 2 
+// <3=> 3 
+// <4=> 4 
+// <5=> 5 
+// <6=> 6 
+// <7=> 7 
+
+#ifndef UART_DEFAULT_CONFIG_IRQ_PRIORITY
+#define UART_DEFAULT_CONFIG_IRQ_PRIORITY 7
+#endif
+
+// <q> UART_EASY_DMA_SUPPORT  - Driver supporting EasyDMA
+ 
+
+#ifndef UART_EASY_DMA_SUPPORT
+#define UART_EASY_DMA_SUPPORT 1
+#endif
+
+// <q> UART_LEGACY_SUPPORT  - Driver supporting Legacy mode
+ 
+
+#ifndef UART_LEGACY_SUPPORT
+#define UART_LEGACY_SUPPORT 1
+#endif
+
+// <e> UART0_ENABLED - Enable UART0 instance
+//==========================================================
+#ifndef UART0_ENABLED
+#define UART0_ENABLED 1
+#endif
+// <q> UART0_CONFIG_USE_EASY_DMA  - Default setting for using EasyDMA
+ 
+
+#ifndef UART0_CONFIG_USE_EASY_DMA
+#define UART0_CONFIG_USE_EASY_DMA 1
+#endif
+
+//==========================================================
+// <e> CLOCK_ENABLED - nrf_drv_clock - CLOCK peripheral driver
+//==========================================================
+#ifndef CLOCK_ENABLED
+#define CLOCK_ENABLED 1
+#endif
+// <o> CLOCK_CONFIG_XTAL_FREQ  - HF XTAL Frequency
+
+// <0=> Default (64 MHz)
+
+#ifndef CLOCK_CONFIG_XTAL_FREQ
+#define CLOCK_CONFIG_XTAL_FREQ 0
+#endif
+
+// <o> CLOCK_CONFIG_LF_SRC  - LF Clock Source
+
+// <0=> RC
+// <1=> XTAL
+// <2=> Synth
+
+#ifndef CLOCK_CONFIG_LF_SRC
+#define CLOCK_CONFIG_LF_SRC 1
+#endif
+
+// <o> CLOCK_CONFIG_IRQ_PRIORITY  - Interrupt priority
+
+
+// <i> Priorities 0,2 (nRF51) and 0,1,4,5 (nRF52) are reserved for SoftDevice
+// <0=> 0 (highest)
+// <1=> 1
+// <2=> 2
+// <3=> 3
+// <4=> 4
+// <5=> 5
+// <6=> 6
+// <7=> 7
+
+#ifndef CLOCK_CONFIG_IRQ_PRIORITY
+#define CLOCK_CONFIG_IRQ_PRIORITY 7
+#endif
+
+// </e>
 
 //==========================================================
 // <e> GPIOTE_ENABLED - nrf_drv_gpiote - GPIOTE peripheral driver
@@ -2321,7 +1876,7 @@
  
 
 #ifndef SPI0_USE_EASY_DMA
-#define SPI0_USE_EASY_DMA 1
+#define SPI0_USE_EASY_DMA 0
 #endif
 
 // </e>
@@ -2353,6 +1908,20 @@
 #endif
 
 // </e>
+
+// <q> SPIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED  - Enables nRF52 anomaly 109 workaround for SPIM.
+ 
+
+// <i> The workaround uses interrupts to wake up the CPU by catching
+// <i> a start event of zero-length transmission to start the clock. This 
+// <i> ensures that the DMA transfer will be executed without issues and
+// <i> that the proper transfer will be started. See more in the Errata 
+// <i> document or Anomaly 109 Addendum located at 
+// <i> https://infocenter.nordicsemi.com/
+
+#ifndef SPIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED
+#define SPIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED 0
+#endif
 
 // </e>
 
@@ -2443,20 +2012,6 @@
 
 #ifndef UART0_CONFIG_USE_EASY_DMA
 #define UART0_CONFIG_USE_EASY_DMA 1
-#endif
-
-// </e>
-
-// <e> UART1_ENABLED - Enable UART1 instance
-//==========================================================
-#ifndef UART1_ENABLED
-#define UART1_ENABLED 0
-#endif
-// <q> UART1_CONFIG_USE_EASY_DMA  - Default setting for using EasyDMA
- 
-
-#ifndef UART1_CONFIG_USE_EASY_DMA
-#define UART1_CONFIG_USE_EASY_DMA 1
 #endif
 
 // </e>
@@ -2576,6 +2131,12 @@
 #ifndef BUTTON_ENABLED
 #define BUTTON_ENABLED 1
 #endif
+// <q> RETARGET_ENABLED  - retarget - Retargeting stdio functions
+ 
+
+#ifndef RETARGET_ENABLED
+#define RETARGET_ENABLED 1
+#endif
 
 // <e> NRF_BALLOC_ENABLED - nrf_balloc - Block allocator module
 //==========================================================
@@ -2656,7 +2217,7 @@
 // <e> NRF_LOG_BACKEND_RTT_ENABLED - nrf_log_backend_rtt - Log RTT backend
 //==========================================================
 #ifndef NRF_LOG_BACKEND_RTT_ENABLED
-#define NRF_LOG_BACKEND_RTT_ENABLED 0
+#define NRF_LOG_BACKEND_RTT_ENABLED 1
 #endif
 // <o> NRF_LOG_BACKEND_RTT_TEMP_BUFFER_SIZE - Size of buffer for partially processed strings. 
 // <i> Size of the buffer is a trade-off between RAM usage and processing.
@@ -2883,6 +2444,30 @@
 //==========================================================
 // <h> nrf_log in nRF_Core 
 
+
+
+// <q> APP_FIFO_ENABLED  - app_fifo - Software FIFO implementation
+ 
+
+#ifndef APP_FIFO_ENABLED
+#define APP_FIFO_ENABLED 1
+#endif
+
+// <e> APP_UART_ENABLED - app_uart - UART driver
+//==========================================================
+#ifndef APP_UART_ENABLED
+#define APP_UART_ENABLED 1
+#endif
+// <o> APP_UART_DRIVER_INSTANCE  - UART instance used
+ 
+// <0=> 0 
+
+#ifndef APP_UART_DRIVER_INSTANCE
+#define APP_UART_DRIVER_INSTANCE 0
+#endif
+
+// </e>
+
 //==========================================================
 // <e> NRF_MPU_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
@@ -3046,7 +2631,7 @@
 // <e> CLOCK_CONFIG_LOG_ENABLED - Enables logging in the module.
 //==========================================================
 #ifndef CLOCK_CONFIG_LOG_ENABLED
-#define CLOCK_CONFIG_LOG_ENABLED 0
+#define CLOCK_CONFIG_LOG_ENABLED 1
 #endif
 // <o> CLOCK_CONFIG_LOG_LEVEL  - Default Severity level
  
@@ -4848,6 +4433,153 @@
 
 // </h> 
 //==========================================================
+// <e> TWI_ENABLED - nrf_drv_twi - TWI/TWIM peripheral driver
+//==========================================================
+#ifndef TWI_ENABLED
+#define TWI_ENABLED 1
+#endif
+#if  TWI_ENABLED
+// <o> TWI_DEFAULT_CONFIG_FREQUENCY  - Frequency
+ 
+// <26738688=> 100k 
+// <67108864=> 250k 
+// <104857600=> 400k 
+
+#ifndef TWI_DEFAULT_CONFIG_FREQUENCY
+#define TWI_DEFAULT_CONFIG_FREQUENCY 26738688
+#endif
+
+// <q> TWI_DEFAULT_CONFIG_CLR_BUS_INIT  - Enables bus clearing procedure during init
+ 
+
+#ifndef TWI_DEFAULT_CONFIG_CLR_BUS_INIT
+#define TWI_DEFAULT_CONFIG_CLR_BUS_INIT 0
+#endif
+
+// <q> TWI_DEFAULT_CONFIG_HOLD_BUS_UNINIT  - Enables bus holding after uninit
+ 
+
+#ifndef TWI_DEFAULT_CONFIG_HOLD_BUS_UNINIT
+#define TWI_DEFAULT_CONFIG_HOLD_BUS_UNINIT 0
+#endif
+
+// <o> TWI_DEFAULT_CONFIG_IRQ_PRIORITY  - Interrupt priority
+ 
+
+// <i> Priorities 0,2 (nRF51) and 0,1,4,5 (nRF52) are reserved for SoftDevice
+// <0=> 0 (highest) 
+// <1=> 1 
+// <2=> 2 
+// <3=> 3 
+// <4=> 4 
+// <5=> 5 
+// <6=> 6 
+// <7=> 7 
+
+#ifndef TWI_DEFAULT_CONFIG_IRQ_PRIORITY
+#define TWI_DEFAULT_CONFIG_IRQ_PRIORITY 7
+#endif
+
+// <e> TWI0_ENABLED - Enable TWI0 instance
+//==========================================================
+#ifndef TWI0_ENABLED
+#define TWI0_ENABLED 0
+#endif
+#if  TWI0_ENABLED
+// <q> TWI0_USE_EASY_DMA  - Use EasyDMA (if present)
+ 
+
+#ifndef TWI0_USE_EASY_DMA
+#define TWI0_USE_EASY_DMA 1
+#endif
+
+#endif //TWI0_ENABLED
+// </e>
+
+// <e> TWI1_ENABLED - Enable TWI1 instance
+//==========================================================
+#ifndef TWI1_ENABLED
+#define TWI1_ENABLED 1
+#endif
+#if  TWI1_ENABLED
+// <q> TWI1_USE_EASY_DMA  - Use EasyDMA (if present)
+ 
+
+#ifndef TWI1_USE_EASY_DMA
+#define TWI1_USE_EASY_DMA 1
+#endif
+
+#endif //TWI1_ENABLED
+// </e>
+
+// <e> TWI_CONFIG_LOG_ENABLED - Enables logging in the module.
+//==========================================================
+#ifndef TWI_CONFIG_LOG_ENABLED
+#define TWI_CONFIG_LOG_ENABLED 0
+#endif
+#if  TWI_CONFIG_LOG_ENABLED
+// <o> TWI_CONFIG_LOG_LEVEL  - Default Severity level
+ 
+// <0=> Off 
+// <1=> Error 
+// <2=> Warning 
+// <3=> Info 
+// <4=> Debug 
+
+#ifndef TWI_CONFIG_LOG_LEVEL
+#define TWI_CONFIG_LOG_LEVEL 3
+#endif
+
+// <o> TWI_CONFIG_INFO_COLOR  - ANSI escape code prefix.
+ 
+// <0=> Default 
+// <1=> Black 
+// <2=> Red 
+// <3=> Green 
+// <4=> Yellow 
+// <5=> Blue 
+// <6=> Magenta 
+// <7=> Cyan 
+// <8=> White 
+
+#ifndef TWI_CONFIG_INFO_COLOR
+#define TWI_CONFIG_INFO_COLOR 0
+#endif
+
+// <o> TWI_CONFIG_DEBUG_COLOR  - ANSI escape code prefix.
+ 
+// <0=> Default 
+// <1=> Black 
+// <2=> Red 
+// <3=> Green 
+// <4=> Yellow 
+// <5=> Blue 
+// <6=> Magenta 
+// <7=> Cyan 
+// <8=> White 
+
+#ifndef TWI_CONFIG_DEBUG_COLOR
+#define TWI_CONFIG_DEBUG_COLOR 0
+#endif
+
+#endif //TWI_CONFIG_LOG_ENABLED
+// </e>
+
+// <q> TWIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED  - Enables nRF52 anomaly 109 workaround for TWIM.
+ 
+
+// <i> The workaround uses interrupts to wake up the CPU by catching
+// <i> the start event of zero-frequency transmission, clear the 
+// <i> peripheral, set desired frequency, start the peripheral, and
+// <i> the proper transmission. See more in the Errata document or
+// <i> Anomaly 109 Addendum located at https://infocenter.nordicsemi.com/
+
+#ifndef TWIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED
+#define TWIM_NRF52_ANOMALY_109_WORKAROUND_ENABLED 0
+#endif
+
+#endif //TWI_ENABLED
+// </e>
 
 // </h> 
 //==========================================================

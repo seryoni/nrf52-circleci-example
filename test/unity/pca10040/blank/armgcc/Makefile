@@ -2,17 +2,17 @@ PROJECT_NAME     := unity_pca10040
 TARGETS          := nrf52832_xxaa
 OUTPUT_DIRECTORY := _build
 
-SDK_ROOT := ../../../../../nRF5_SDK_14.1.0_1dda907
-PROJ_DIR := ../../..
-UNITY_DIR := ../../../unity_lib
-SUDO_DIR := ../../../sudo_lib
+PROJ_DIR := ../../../../..
+SDK_ROOT := $(PROJ_DIR)/nRF5_SDK_14.1.0_1dda907
+UNITY_PROJ_DIR := ../../..
+UNITY_DIR := $(UNITY_PROJ_DIR)/unity_lib
+SUDO_DIR := $(UNITY_PROJ_DIR)/sudo_lib
 
 $(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
   LINKER_SCRIPT  := blinky_gcc_nrf52.ld
 
 # Source files common to all targets
 SRC_FILES += \
-  $(SDK_ROOT)/components/libraries/experimental_log/src/nrf_log_frontend.c \
   $(SDK_ROOT)/components/boards/boards.c \
   $(SDK_ROOT)/components/libraries/util/app_error.c \
   $(SDK_ROOT)/components/libraries/util/app_error_weak.c \
@@ -20,25 +20,17 @@ SRC_FILES += \
   $(SDK_ROOT)/components/libraries/uart/app_uart_fifo.c \
   $(SDK_ROOT)/components/libraries/util/app_util_platform.c \
   $(SDK_ROOT)/components/libraries/uart/retarget.c \
-  $(SDK_ROOT)/components/libraries/scheduler/app_scheduler.c \
   $(SDK_ROOT)/components/libraries/timer/app_timer.c \
   $(SDK_ROOT)/components/libraries/util/app_util_platform.c \
   $(SDK_ROOT)/components/libraries/hardfault/hardfault_implementation.c \
-  $(SDK_ROOT)/components/libraries/util/nrf_assert.c \
-  $(SDK_ROOT)/components/libraries/strerror/nrf_strerror.c \
   $(SDK_ROOT)/components/drivers_nrf/clock/nrf_drv_clock.c \
   $(SDK_ROOT)/components/drivers_nrf/common/nrf_drv_common.c \
   $(SDK_ROOT)/components/drivers_nrf/uart/nrf_drv_uart.c \
-  $(SDK_ROOT)/components/drivers_nrf/nrf_soc_nosd/nrf_nvic.c \
-  $(SDK_ROOT)/components/drivers_nrf/nrf_soc_nosd/nrf_soc.c \
-  $(PROJ_DIR)/main.c \
-  $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_Syscalls_GCC.c \
-  $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
-  $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
+  $(UNITY_PROJ_DIR)/test.c \
   $(SDK_ROOT)/components/toolchain/gcc/gcc_startup_nrf52.S \
   $(SDK_ROOT)/components/toolchain/system_nrf52.c \
   $(UNITY_DIR)/src/unity.c \
-  $(PROJ_DIR)/test/TestProductionCode.c \
+  $(UNITY_PROJ_DIR)/test/TestProductionCode.c \
   $(SUDO_DIR)/jumper.c \
 
 # Include folders common to all targets
@@ -59,7 +51,7 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/ble/ble_services/ble_gls \
   $(SDK_ROOT)/components/libraries/fstorage \
   $(SDK_ROOT)/components/drivers_nrf/i2s \
-  $(PROJ_DIR) \
+  $(UNITY_PROJ_DIR) \
   $(SDK_ROOT)/components/libraries/gpiote \
   $(SDK_ROOT)/components/drivers_nrf/gpiote \
   $(SDK_ROOT)/components/drivers_nrf/nrf_soc_nosd \
@@ -149,7 +141,7 @@ INC_FOLDERS += \
   $(UNITY_DIR)/src \
   $(UNITY_DIR) \
   $(SDK_ROOT)/components/libraries/fifo \
-  $(PROJ_DIR)/test/ \
+  $(UNITY_PROJ_DIR)/test/ \
   $(PROJ_DIR)/src/ \
   $(SUDO_DIR) \
 # Libraries common to all targets
