@@ -46,20 +46,23 @@
 int main(void)
 {
     log_configuration();
-    button_configuration();
     bme_start();
-//    wifi_configuration();
+    wifi_configuration();
+    button_configuration();
+
+    while (wifi_connected != M2M_WIFI_CONNECTED) {
+       m2m_wifi_handle_events(NULL);
+       nrf_delay_ms(50);
+    }
+
+    OpenAndConnectTcpClientSocket();
 
     while (1) {
          /* Handle pending events from network controller. */
-        // m2m_wifi_handle_events(NULL);
-        // if (wifi_connected == M2M_WIFI_CONNECTED) {
-        //     OpenAndConnectTcpClientSocket();
-        // }
         nrf_delay_ms(50);
+        m2m_wifi_handle_events(NULL);
         if(button_callback_callad) {
-            /* Delay while the sensor completes a measurement */
-            printf("Temperature: %d\r\n", bme280_get_temperature());
+            send_temperature();
             button_callback_callad = false;
         }
     }

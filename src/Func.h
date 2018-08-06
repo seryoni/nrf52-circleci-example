@@ -95,5 +95,8 @@ void OpenAndConnectTcpClientSocket();
 
 
 extern volatile bool button_callback_callad;
+extern volatile uint8_t wifi_connected;
 
 void bsp_event_callback(bsp_event_t event);
+
+void send_temperature() ;

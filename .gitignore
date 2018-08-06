@@ -8,3 +8,4 @@ TemperatureSensor.cert.pem
 TemperatureSensor.private.key
 .idea/
 .DS_Store
+.project
