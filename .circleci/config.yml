@@ -114,7 +114,7 @@ workflows:
                 context: atwinc-aws-demo
                 requires:
                     - build
-            - test-2-uart:
+            - test-2-uart: 
                 context: atwinc-aws-demo
                 requires:
                     - build
