@@ -63,7 +63,8 @@ def main():
 
         try:
             while connection_on:
-                data = conn.recv(4)
+                data = conn.recv(2)
+                print "got 2 bytes"
                 if (data):
                     val = str(data.strip('\0'))
                     print "received temprature value from device:", str(val)
