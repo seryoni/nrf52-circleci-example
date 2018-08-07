@@ -55,7 +55,9 @@ int main(void)
        nrf_delay_ms(50);
     }
 
+    #ifdef ATWINC_ENABLED
     OpenAndConnectTcpClientSocket();
+    #endif
 
     while (1) {
          /* Handle pending events from network controller. */

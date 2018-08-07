@@ -46,7 +46,7 @@ deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWithName(thing
 
 def main():
     # open tcp server socket
-    TCP_IP = '127.0.0.1'
+    TCP_IP = '0.0.0.0'
     TCP_PORT = 5005
     BUFFER_SIZE = 8192 
 
@@ -54,28 +54,32 @@ def main():
     s.bind((TCP_IP, TCP_PORT))
     s.listen(1)
   #  s.settimeout(10)
-    print "Waiting for client"
-    conn, addr = s.accept()
-    print "Client connected!"
-    data=''
+    while True:
+        print "Waiting for client"
+        conn, addr = s.accept()
+        print "Client connected!"
+        data=''
+        connection_on = True
 
-    try:
-        while True:
-            data = conn.recv(4)
-            if (data):
-                val = str(data.strip('\0'))
-                print "received temprature value from device:", str(val)
-                JSONPayload = '{"state":{"desired":{"temprature":"' + str(val) + '"}}}'.decode('utf-8')
-                print JSONPayload
-                deviceShadowHandler.shadowUpdate(JSONPayload, customShadowCallback_Update, 5)
-                print "Data was sent to AWS"
-            else:
-                print "got null"
-            sleep(1)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        print('Disconnecting')
+        try:
+            while connection_on:
+                data = conn.recv(2)
+                if (data):
+                    print "got 2 bytes"
+                    val = str(data.strip('\0'))
+                    print "received temprature value from device:", str(val)
+                    JSONPayload = '{"state":{"desired":{"temprature":"' + str(val) + '"}}}'.decode('utf-8')
+                    print JSONPayload
+                    deviceShadowHandler.shadowUpdate(JSONPayload, customShadowCallback_Update, 5)
+                    print "Data was sent to AWS"
+                else:
+                    connection_on = False
+                    print "got null"
+                sleep(1)
+        except KeyboardInterrupt:
+            pass
+        finally:
+            print('Disconnecting')
 
 if __name__ == '__main__':
     main()
