@@ -34,9 +34,8 @@ class TestEndToEnd(unittest.TestCase):
             self.push_button()
             line = self.uart.read()
             match = re.search('(Temperature: )(\d{2})', line)
-            temp = int(match.group(2))
-            self.assertGreater(temp, 20)
-            self.assertLess(temp, 40)
+            temp_uart = int(match.group(2))
+            self.assertTrue(20 <= temp_uart <= 40)
 
 
 if __name__ == '__main__':

@@ -4,13 +4,13 @@ import setting
 import boto3
 import json
 import os
-
+import re
+from time import sleep
 
 client = boto3.client('iot-data',
                       region_name='us-east-1',
                       aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
-                      aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
-                      # aws_session_token=SESSION_TOKEN,
+                      aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY")
                       )
 
 
@@ -18,7 +18,7 @@ class TestEndToEnd(unittest.TestCase):
     def setUp(self):
         print(self.id().split('.')[-1])  # test name
         self.vlab = Vlab(working_directory=setting.dir, print_uart=True)
-        self.vlab.load(setting.fw_bin)
+        self.vlab.load(setting.fw_bin_aws)
         self.uart = self.vlab.uart
         self.vlab.run_for_ms(500)
         print('Virtual device is running')
@@ -32,7 +32,7 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(60)
         print('Button off')
         self.vlab.BUTTON1.off()
-        self.vlab.run_for_ms(600)
+        self.vlab.run_for_ms(1000)
 
     def read_from_aws(self):
         response = client.get_thing_shadow(thingName='TemperatureSensor')
@@ -47,10 +47,21 @@ class TestEndToEnd(unittest.TestCase):
     Set temperature, click a button and verify that the shadow device on AWS was updated with the same temperature
     '''
     def test_3_Integration_Test(self):
-        self.push_button()
-        self.vlab.run_for_ms(1000)
-        self.assertEquals('2762', self.read_from_aws())
-          
+        for i in range(20):
+            self.push_button()
+            match = re.search('(Temperature: )(\d{2})', self.uart.read())
+            temp_uart = int(match.group(2))
+            success = False
+            for j in range(60):
+                temp_aws = int(self.read_from_aws())
+                print('Temperature from aws: ' + str(temp_aws))
+                success = temp_uart == temp_aws
+                if success:
+                    break
+                sleep(1)
+            # self.assertTrue(20 <= temp_aws <= 40)
+            self.assertTrue(success)
+
 
 if __name__ == '__main__':
     unittest.main()

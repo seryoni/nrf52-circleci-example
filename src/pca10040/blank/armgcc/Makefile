@@ -1,6 +1,7 @@
 PROJECT_NAME     := spi_pca10040
 TARGETS          := nrf52832_xxaa
 OUTPUT_DIRECTORY := _build
+ 
 
 SDK_ROOT := ../../../../nRF5_SDK_14.1.0_1dda907
 PROJ_DIR := ../../../..
