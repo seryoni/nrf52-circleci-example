@@ -39,9 +39,9 @@ Note: Use the "US East (N. Virginia)" ("us-east-1") region for AWS services
   
   AWS_SECRET_ACCESS_KEY: Value from ~/.aws/credentials
   
-  TEMP_SENSOR_CERT: Value of `tcp-server/my_temp_sensor.cert.pem | base64`
+  TEMP_SENSOR_CERT: Value of `cat tcp-server/my_temp_sensor.cert.pem | base64`
   
-  TEMP_SENSOR_KEY: Value of `tcp-server/my_temp_sensor.private.key | base64`
+  TEMP_SENSOR_KEY: Value of `cat tcp-server/my_temp_sensor.private.key | base64`
 
 - Add the project to CircleCI
 
