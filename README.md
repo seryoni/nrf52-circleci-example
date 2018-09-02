@@ -34,9 +34,13 @@ Note: Use the "US East (N. Virginia)" ("us-east-1") region for AWS services
 - Set the following environmental variables for the context:
 
   VLAB_USER_CONFIG: Contents of ~/.jumper/config.json
+
   AWS_ACCESS_KEY_ID: Value from ~/.aws/credentials
+  
   AWS_SECRET_ACCESS_KEY: Value from ~/.aws/credentials
+  
   TEMP_SENSOR_CERT: Value of `tcp-server/my_temp_sensor.cert.pem | base64`
+  
   TEMP_SENSOR_KEY: Value of `tcp-server/my_temp_sensor.private.key | base64`
 
 - Copy the contents of "~/.jumer/config.json" and set it as a variable under the name "VLAB_USER_CONFIG"- 
