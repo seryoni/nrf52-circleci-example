@@ -18,6 +18,7 @@ This sample project demonstrates tests written in Jumper Virtual Lab and how the
 - CircleCI account
 
 ### AWS Setup
+Note: Use the "US East (N. Virginia)" ("us-east-1") region for AWS services
 - Create a thing on AWS IoT and name it "my_temp_sensor": Follow this [https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html](Getting Started) guide to register a device, activate it and download certificates for the device (No need to attach policies or configure your device).
 - Save the certificates files under nrf52-circleci-example/tcp-server/my_temp_sensor.cert.pem and nrf52-circleci-example/tcp-server/my_temp_sensor.private.key
 - In nrf52-circleci-example/tcp-server/aws-temprature.py, change the `clientId` variable to the client "thing ARN" from your thing's Detail section an the AWS console.
