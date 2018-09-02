@@ -37,12 +37,6 @@ jobs:
                     virtualenv --python=python2 venv
                     . venv/bin/activate
                     pip install -r requirements.txt
-            - run:
-                name: setup-keys
-                command: |
-                    echo $ROOT_CA > root-CA.crt
-                    echo $TEMP_SENSOR_CERT > src/pca10040/my_temp_sensor.cert.pem
-                    echo $TEMP_SENSOR_KEY > src/pca10040/my_temp_sensor.private.key
             - persist_to_workspace:
                 root: .
                 paths:
@@ -98,6 +92,11 @@ jobs:
                 command: |
                     mkdir ~/.jumper/
                     echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+            - run:
+                name: setup-keys
+                command: |
+                    echo $TEMP_SENSOR_CERT > tcp-server/my_temp_sensor.cert.pem
+                    echo $TEMP_SENSOR_KEY > tcp-server/my_temp_sensor.private.key
             - run:
                 name: test-3-aws (Integration Test)
                 command: |
