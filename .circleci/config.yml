@@ -41,8 +41,8 @@ jobs:
                 name: setup-keys
                 command: |
                     echo $ROOT_CA > root-CA.crt
-                    echo $TEMP_SENSOR_CERT > src/pca10040/TemperatureSensor.cert.pem
-                    echo $TEMP_SENSOR_KEY > src/pca10040/TemperatureSensor.private.key
+                    echo $TEMP_SENSOR_CERT > src/pca10040/my_temp_sensor.cert.pem
+                    echo $TEMP_SENSOR_KEY > src/pca10040/my_temp_sensor.private.key
             - persist_to_workspace:
                 root: .
                 paths:
@@ -50,8 +50,8 @@ jobs:
                     - src/pca10040/blank/armgcc/_build_2
                     - test/unity/pca10040/blank/armgcc/_build
                     - venv
-                    - src/pca10040/TemperatureSensor.cert.pem
-                    - src/pca10040/TemperatureSensor.private.key
+                    - src/pca10040/my_temp_sensor.cert.pem
+                    - src/pca10040/my_temp_sensor.private.key
     test-1-ut:
         docker:
             - image: circleci/python
