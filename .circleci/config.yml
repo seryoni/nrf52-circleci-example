@@ -95,8 +95,8 @@ jobs:
             - run:
                 name: setup-keys
                 command: |
-                    echo $TEMP_SENSOR_CERT > tcp-server/my_temp_sensor.cert.pem
-                    echo $TEMP_SENSOR_KEY > tcp-server/my_temp_sensor.private.key
+                    echo -n $TEMP_SENSOR_CERT | base64 -D > tcp-server/my_temp_sensor.cert.pem
+                    echo -n $TEMP_SENSOR_KEY | base64 -D > tcp-server/my_temp_sensor.private.key
             - run:
                 name: test-3-aws (Integration Test)
                 command: |
