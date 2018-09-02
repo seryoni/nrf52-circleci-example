@@ -31,13 +31,15 @@ This sample project demonstrates tests written in Jumper Virtual Lab and how the
 ### Connect to CircleCI
 - Create a context in CircleCI called "atwinc-aws-demo".
 - Set the following environmental variables for the congtext:
-    |-----------------------|-----------------------------------|
-    | Variable              | Data                              |
-    |-----------------------|-----------------------------------|
-    | VLAB_USER_CONFIG      | Contents of ~/.jumper/config.json |
-    | AWS_ACCESS_KEY_ID     | Value from ~/.aws/credentials     |
-    | AWS_SECRET_ACCESS_KEY | Value from ~/.aws/credentials     |
-    |-----------------------|-----------------------------------|
+    |-----------------------|------------------------------------------------|
+    | Variable              | Data                                           |
+    |-----------------------|------------------------------------------------|
+    | VLAB_USER_CONFIG      | Contents of ~/.jumper/config.json              |
+    | AWS_ACCESS_KEY_ID     | Value from ~/.aws/credentials                  |
+    | AWS_SECRET_ACCESS_KEY | Value from ~/.aws/credentials                  |
+    | TEMP_SENSOR_CERT      | Value of tcp-server/my_temp_sensor.cert.pem    |
+    | TEMP_SENSOR_KEY       | Value of tcp-server/my_temp_sensor.private.key |
+    |-----------------------|------------------------------------------------|
 
 - Copy the contents of "~/.jumer/config.json" and set it as a variable under the name "VLAB_USER_CONFIG"- 
 - Add the project to CircleCI
