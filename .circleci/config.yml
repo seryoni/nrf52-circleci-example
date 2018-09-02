@@ -44,8 +44,6 @@ jobs:
                     - src/pca10040/blank/armgcc/_build_2
                     - test/unity/pca10040/blank/armgcc/_build
                     - venv
-                    - src/pca10040/my_temp_sensor.cert.pem
-                    - src/pca10040/my_temp_sensor.private.key
     test-1-ut:
         docker:
             - image: circleci/python
