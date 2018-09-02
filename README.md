@@ -19,7 +19,7 @@ This sample project demonstrates tests written in Jumper Virtual Lab and how the
 
 ### AWS Setup
 Note: Use the "US East (N. Virginia)" ("us-east-1") region for AWS services
-- Create a thing on AWS IoT and name it "my_temp_sensor": Follow this [https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html](Getting Started) guide to register a device, activate it and download certificates for the device (No need to attach policies or configure your device).
+- Create a thing on AWS IoT and name it "my_temp_sensor": Follow this [Getting Started](https://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) guide to register a device, activate it and download certificates for the device (No need to attach policies or configure your device).
 - Save the certificates files under nrf52-circleci-example/tcp-server/my_temp_sensor.cert.pem and nrf52-circleci-example/tcp-server/my_temp_sensor.private.key
 - In nrf52-circleci-example/tcp-server/aws-temprature.py, change the `clientId` variable to the client "thing ARN" from your thing's Detail section an the AWS console.
 - Create a policy with "Action" set to "iot.*", "Resouce ARN" set to "*" and mark the "Allow" tick.
@@ -31,16 +31,18 @@ Note: Use the "US East (N. Virginia)" ("us-east-1") region for AWS services
 
 ### Connect to CircleCI
 - Create a context in CircleCI called "atwinc-aws-demo".
-- Set the following environmental variables for the congtext:
-    |-----------------------|-----------------------------------------------------------|
-    | Variable              | Data                                                      |
-    |-----------------------|-----------------------------------------------------------|
-    | VLAB_USER_CONFIG      | Contents of ~/.jumper/config.json                         |
-    | AWS_ACCESS_KEY_ID     | Value from ~/.aws/credentials                             |
-    | AWS_SECRET_ACCESS_KEY | Value from ~/.aws/credentials                             |
-    | TEMP_SENSOR_CERT      | Value of `tcp-server/my_temp_sensor.cert.pem | base64`    |
-    | TEMP_SENSOR_KEY       | Value of `tcp-server/my_temp_sensor.private.key | base64` |
-    |-----------------------|-----------------------------------------------------------|
+- Set the following environmental variables for the context:
+
+  VLAB_USER_CONFIG: Contents of ~/.jumper/config.json
+
+  AWS_ACCESS_KEY_ID: Value from ~/.aws/credentials
+  
+  AWS_SECRET_ACCESS_KEY: Value from ~/.aws/credentials
+  
+  TEMP_SENSOR_CERT: Value of `tcp-server/my_temp_sensor.cert.pem | base64`
+  
+  TEMP_SENSOR_KEY: Value of `tcp-server/my_temp_sensor.private.key | base64`
+
 - Add the project to CircleCI
 
 ## Running the Tests
