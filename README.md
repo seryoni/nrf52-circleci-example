@@ -39,8 +39,7 @@ This sample project demonstrates tests written in Jumper Virtual Lab and how the
     | AWS_SECRET_ACCESS_KEY | Value from ~/.aws/credentials     |
     |-----------------------|-----------------------------------|
 
-- Copy the contents of "~/.jumer/config.json" and set it as a variable under the name "VLAB_USER_CONFIG"
-- 
+- Copy the contents of "~/.jumer/config.json" and set it as a variable under the name "VLAB_USER_CONFIG"- 
 - Add the project to CircleCI
 
 ## Running the Tests
