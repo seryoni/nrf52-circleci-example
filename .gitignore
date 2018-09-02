@@ -4,9 +4,8 @@ _build_2
 venv
 .jumper
 .vscode
-root-CA.crt
-TemperatureSensor.cert.pem
-TemperatureSensor.private.key
+my_temp_sensor.cert.pem
+my_temp_sensor.private.key
 .idea
 .DS_Store
 .project

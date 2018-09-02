@@ -20,12 +20,12 @@ def customShadowCallback_Update(payload, responseStatus, token):
 
 host = 'a1rxr3meyz7der.iot.us-east-1.amazonaws.com'
 rootCAPath = 'root-CA.crt'
-certificatePath = 'TemperatureSensor.cert.pem'
-privateKeyPath = 'TemperatureSensor.private.key'
+certificatePath = 'my_temp_sensor.cert.pem'
+privateKeyPath = 'my_temp_sensor.private.key'
 port = 8883
 useWebsocket = False
-thingName = 'TemperatureSensor'
-clientId = 'arn:aws:iot:us-east-1:617413614608:thing/TemperatureSensor'
+thingName = 'my_temp_sensor'
+clientId = 'arn:aws:iot:us-east-1:617413614608:thing/my_temp_sensor'
 data = B''
 # Init AWSIoTMQTTShadowClient
 myAWSIoTMQTTShadowClient = AWSIoTMQTTShadowClient(clientId)
