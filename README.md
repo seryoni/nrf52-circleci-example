@@ -31,7 +31,7 @@ Note: Use the "US East (N. Virginia)" ("us-east-1") region for AWS services
 
 ### Connect to CircleCI
 - Create a context in CircleCI called "atwinc-aws-demo".
-- Set the following environmental variables for the congtext:
+- Set the following environmental variables for the context:
 
   VLAB_USER_CONFIG: Contents of ~/.jumper/config.json
   AWS_ACCESS_KEY_ID: Value from ~/.aws/credentials
