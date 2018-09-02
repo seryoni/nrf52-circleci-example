@@ -41,8 +41,6 @@ Note: Use the "US East (N. Virginia)" ("us-east-1") region for AWS services
     | TEMP_SENSOR_CERT      | Value of `tcp-server/my_temp_sensor.cert.pem | base64`    |
     | TEMP_SENSOR_KEY       | Value of `tcp-server/my_temp_sensor.private.key | base64` |
     |-----------------------|-----------------------------------------------------------|
-
-- Copy the contents of "~/.jumer/config.json" and set it as a variable under the name "VLAB_USER_CONFIG"- 
 - Add the project to CircleCI
 
 ## Running the Tests
