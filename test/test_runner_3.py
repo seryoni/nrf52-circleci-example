@@ -6,17 +6,18 @@ import json
 import os
 import re
 from time import sleep
+import subprocess
 
-client = boto3.client('iot-data',
-                      region_name='us-east-1',
-                      aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
-                      aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY")
-                      )
+here = os.path.dirname(os.path.abspath(__file__))
+client = boto3.client('iot-data', region_name='us-east-1')
 
 
 class TestEndToEnd(unittest.TestCase):
     def setUp(self):
         print(self.id().split('.')[-1])  # test name
+        tcp_server_dir = os.path.join(here, '..', 'tcp-server')
+        self.gateway_process = subprocess.Popen(['python', 'aws-temprature.py'], cwd=tcp_server_dir)
+        sleep(2)
         self.vlab = Vlab(working_directory=setting.dir, print_uart=True)
         self.vlab.load(setting.fw_bin_aws)
         self.uart = self.vlab.uart
@@ -25,6 +26,8 @@ class TestEndToEnd(unittest.TestCase):
 
     def tearDown(self):
         self.vlab.stop()
+        self.gateway_process.terminate()
+        self.gateway_process.wait()
 
     def push_button(self):
         print('Button on')
@@ -35,7 +38,7 @@ class TestEndToEnd(unittest.TestCase):
         self.vlab.run_for_ms(1000)
 
     def read_from_aws(self):
-        response = client.get_thing_shadow(thingName='TemperatureSensor')
+        response = client.get_thing_shadow(thingName='my_temp_sensor')
         streaming_body = response["payload"]
         raw_data_bytes = streaming_body.read()
         raw_data_string = raw_data_bytes.decode('utf-8')  # Python 3.x specific
@@ -47,7 +50,7 @@ class TestEndToEnd(unittest.TestCase):
     Set temperature, click a button and verify that the shadow device on AWS was updated with the same temperature
     '''
     def test_3_Integration_Test(self):
-        for i in range(20):
+        for i in range(3):
             self.push_button()
             match = re.search('(Temperature: )(\d{2})', self.uart.read())
             temp_uart = int(match.group(2))
