@@ -37,6 +37,20 @@ jobs:
                     virtualenv --python=python2 venv
                     . venv/bin/activate
                     pip install -r requirements.txt
+            - persist_to_workspace:
+                root: .
+                paths:
+                    - src/pca10040/blank/armgcc/_build
+                    - src/pca10040/blank/armgcc/_build_2
+                    - test/unity/pca10040/blank/armgcc/_build
+                    - venv
+    test:
+        docker:
+            - image: circleci/python
+        steps:
+            - checkout
+            - attach_workspace:
+                at: .
             - run:
                 name: config
                 command: |
@@ -62,3 +76,14 @@ jobs:
                 command: |
                     . venv/bin/activate
                     nosetests --nocapture --rednose -v test/test_runner_3.py
+
+workflows:
+    version: 2
+    atwinc-aws-demo:
+        jobs:
+            - build:
+                context: atwinc-aws-demo
+            - test:
+                context: atwinc-aws-demo
+                requires:
+                    - build
