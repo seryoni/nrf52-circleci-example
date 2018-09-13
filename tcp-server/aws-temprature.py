@@ -48,38 +48,47 @@ def main():
     # open tcp server socket
     TCP_IP = '0.0.0.0'
     TCP_PORT = 5005
-    BUFFER_SIZE = 8192 
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind((TCP_IP, TCP_PORT))
     s.listen(1)
   #  s.settimeout(10)
-    while True:
-        print "Waiting for client"
-        conn, addr = s.accept()
-        print "Client connected!"
-        data=''
-        connection_on = True
 
-        try:
-            while connection_on:
-                data = conn.recv(2)
-                if (data):
+    try:
+        while True:
+            print "Waiting for client"
+            conn, addr = s.accept()
+            print "Client connected!"
+            connected = True
+
+            while connected:
+                data=b''
+                while (len(data) < 2):
+                    new_data = conn.recv(2 - len(data))
+                    if new_data == b'':
+                        print("Client disconnected")
+                        connected = False
+                        break
+                    data += new_data
+
+                if (len(data) >= 2):
                     print "got 2 bytes"
                     val = str(data.strip('\0'))
                     print "received temprature value from device:", str(val)
-                    JSONPayload = '{"state":{"desired":{"temprature":"' + str(val) + '"}}}'.decode('utf-8')
-                    print JSONPayload
+                    JSONPayload = json.dumps(dict(
+                        state=dict(
+                            desired=dict(temprature=str(val))
+                            )
+                        ))
+                    # JSONPayload = '{"state":{"desired":{"temprature":"' + str(val) + '"}}}'.decode('utf-8')
+                    print(JSONPayload)
                     deviceShadowHandler.shadowUpdate(JSONPayload, customShadowCallback_Update, 5)
                     print "Data was sent to AWS"
-                else:
-                    connection_on = False
-                    print "got null"
                 sleep(1)
-        except KeyboardInterrupt:
-            pass
-        finally:
-            print('Disconnecting')
+    except KeyboardInterrupt:
+        pass
+    
+    s.close()
 
 if __name__ == '__main__':
     main()
