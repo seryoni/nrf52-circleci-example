@@ -44,7 +44,41 @@ jobs:
                     - src/pca10040/blank/armgcc/_build_2
                     - test/unity/pca10040/blank/armgcc/_build
                     - venv
-    test:
+    test-1-ut:
+        docker:
+            - image: circleci/python
+        steps:
+            - checkout
+            - attach_workspace:
+                at: .
+            - run:
+                name: config
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+            - run:
+                name: test-1-ut (Unit Test)
+                command: |
+                    . venv/bin/activate
+                    jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
+    test-2-uart:
+        docker:
+            - image: circleci/python
+        steps:
+            - checkout
+            - attach_workspace:
+                at: .
+            - run:
+                name: config
+                command: |
+                    mkdir ~/.jumper/
+                    echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+            - run:
+                name: test-2-uart (Black Box Test)
+                command: |
+                    . venv/bin/activate
+                    nosetests --nocapture --rednose -v test/test_runner_2.py
+    test-3-aws:
         docker:
             - image: circleci/python
         steps:
@@ -62,16 +96,6 @@ jobs:
                     echo -n $TEMP_SENSOR_CERT | base64 -d > tcp-server/my_temp_sensor.cert.pem
                     echo -n $TEMP_SENSOR_KEY | base64 -d > tcp-server/my_temp_sensor.private.key
             - run:
-                name: test-1-ut (Unit Test)
-                command: |
-                    . venv/bin/activate
-                    jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
-            - run:
-                name: test-2-uart (Black Box Test)
-                command: |
-                    . venv/bin/activate
-                    nosetests --nocapture --rednose -v test/test_runner_2.py
-            - run:
                 name: test-3-aws (Integration Test)
                 command: |
                     . venv/bin/activate
@@ -83,7 +107,15 @@ workflows:
         jobs:
             - build:
                 context: atwinc-aws-demo
-            - test:
+            - test-1-ut:
+                context: atwinc-aws-demo
+                requires:
+                    - build
+            - test-2-uart:
+                context: atwinc-aws-demo
+                requires:
+                    - build
+            - test-3-aws:
                 context: atwinc-aws-demo
                 requires:
                     - build
