@@ -37,12 +37,6 @@ jobs:
                     virtualenv --python=python2 venv
                     . venv/bin/activate
                     pip install -r requirements.txt
-            - run:
-                name: setup-keys
-                command: |
-                    echo $ROOT_CA > root-CA.crt
-                    echo $TEMP_SENSOR_CERT > src/pca10040/TemperatureSensor.cert.pem
-                    echo $TEMP_SENSOR_KEY > src/pca10040/TemperatureSensor.private.key
             - persist_to_workspace:
                 root: .
                 paths:
@@ -50,8 +44,6 @@ jobs:
                     - src/pca10040/blank/armgcc/_build_2
                     - test/unity/pca10040/blank/armgcc/_build
                     - venv
-                    - src/pca10040/TemperatureSensor.cert.pem
-                    - src/pca10040/TemperatureSensor.private.key
     test-1-ut:
         docker:
             - image: circleci/python
@@ -98,6 +90,11 @@ jobs:
                 command: |
                     mkdir ~/.jumper/
                     echo $VLAB_USER_CONFIG > ~/.jumper/config.json
+            - run:
+                name: setup-keys
+                command: |
+                    echo -n $TEMP_SENSOR_CERT | base64 -d > tcp-server/my_temp_sensor.cert.pem
+                    echo -n $TEMP_SENSOR_KEY | base64 -d > tcp-server/my_temp_sensor.private.key
             - run:
                 name: test-3-aws (Integration Test)
                 command: |
