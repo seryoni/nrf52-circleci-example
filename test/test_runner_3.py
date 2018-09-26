@@ -31,10 +31,10 @@ class TestEndToEnd(unittest.TestCase):
 
     def push_button(self):
         print('Button on')
-        #self.vlab.BUTTON1.on()
+        self.vlab.BUTTON1.on()
         self.vlab.run_for_ms(60)
         print('Button off')
-        #self.vlab.BUTTON1.off()
+        self.vlab.BUTTON1.off()
         self.vlab.run_for_ms(1000)
 
     def read_from_aws(self):
