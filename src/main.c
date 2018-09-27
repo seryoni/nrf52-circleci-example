@@ -63,7 +63,7 @@ int main(void)
          /* Handle pending events from network controller. */
         nrf_delay_ms(50);
         if(button_callback_callad) {
-            // send_temperature();
+            send_temperature();
             button_callback_callad = false;
         }
     }
