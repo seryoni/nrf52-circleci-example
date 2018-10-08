@@ -11,7 +11,6 @@ import subprocess
 here = os.path.dirname(os.path.abspath(__file__))
 client = boto3.client('iot-data', region_name='us-east-1')
 
-
 class TestEndToEnd(unittest.TestCase):
     def setUp(self):
         print(self.id().split('.')[-1])  # test name
