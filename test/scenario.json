@@ -11,7 +11,7 @@
             "id": 2,
             "type": "sin",
             "config": {
-                "min": 30,
+                "min": 20,
                 "max": 40,
                 "sinFrequency": 0.1
             }
