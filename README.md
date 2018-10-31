@@ -47,3 +47,4 @@ Note: Use the "US East (N. Virginia)" ("us-east-1") region for AWS services
 
 ## Running the Tests
 Execute this command to run the tests: `nosetests --rednose -sxv test/`
+ 
