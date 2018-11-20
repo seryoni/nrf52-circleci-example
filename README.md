@@ -1,4 +1,4 @@
-# NRF52 + CircleCI Sample Project
+# NRF52 + CircleCI Sample Project 
 
 This is a sample project that shown a Nordic nrf52832 MCU, connected to the following peripherals:
 1. ATWINC1500 Wi-Fi controller (SPI)
