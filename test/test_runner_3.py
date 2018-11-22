@@ -55,11 +55,14 @@ class TestEndToEnd(unittest.TestCase):
             temp_uart = int(match.group(2))
             success = False
             for j in range(60):
-                temp_aws = int(self.read_from_aws())
-                print('Temperature from aws: ' + str(temp_aws))
-                success = temp_uart == temp_aws
-                if success:
-                    break
+                try:
+                    temp_aws = int(self.read_from_aws())
+                    print('Temperature from aws: ' + str(temp_aws))
+                    success = temp_uart == temp_aws
+                    if success:
+                        break
+                except Exception as e:
+                    pass
                 sleep(1)
             self.assertTrue(20 <= temp_aws <= 40)
             self.assertTrue(success)
