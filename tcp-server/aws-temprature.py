@@ -63,29 +63,33 @@ def main():
             connected = True
 
             while connected:
-                data=b''
-                while (len(data) < 2):
-                    new_data = conn.recv(2 - len(data))
-                    if new_data == b'':
-                        print("Client disconnected")
-                        connected = False
-                        break
-                    data += new_data
+                try:
+                    data=b''
+                    while (len(data) < 2):
+                        new_data = conn.recv(2 - len(data))
+                        if new_data == b'':
+                            print("Client disconnected")
+                            connected = False
+                            break
+                        data += new_data
 
-                if (len(data) >= 2):
-                    print "got 2 bytes"
-                    val = str(data.strip('\0'))
-                    print "received temprature value from device:", str(val)
-                    JSONPayload = json.dumps(dict(
-                        state=dict(
-                            desired=dict(temprature=str(val))
-                            )
-                        ))
-                    # JSONPayload = '{"state":{"desired":{"temprature":"' + str(val) + '"}}}'.decode('utf-8')
-                    print(JSONPayload)
-                    deviceShadowHandler.shadowUpdate(JSONPayload, customShadowCallback_Update, 5)
-                    print "Data was sent to AWS"
-                sleep(1)
+                    if (len(data) >= 2):
+                        print "got 2 bytes"
+                        val = str(data.strip('\0'))
+                        print "received temprature value from device:", str(val)
+                        JSONPayload = json.dumps(dict(
+                            state=dict(
+                                desired=dict(temprature=str(val))
+                                )
+                            ))
+                        # JSONPayload = '{"state":{"desired":{"temprature":"' + str(val) + '"}}}'.decode('utf-8')
+                        print(JSONPayload)
+                        deviceShadowHandler.shadowUpdate(JSONPayload, customShadowCallback_Update, 5)
+                        print "Data was sent to AWS"
+                    sleep(1)
+                except Exception as e:
+                    print("Received exception:")
+                    print(e)
     except KeyboardInterrupt:
         pass
     
