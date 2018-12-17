@@ -67,6 +67,5 @@ class TestEndToEnd(unittest.TestCase):
             self.assertTrue(20 <= temp_aws <= 40)
             self.assertTrue(success)
 
-
 if __name__ == '__main__':
     unittest.main()
