@@ -64,6 +64,7 @@ class TestEndToEnd(unittest.TestCase):
                 except Exception as e:
                     pass
                 sleep(1)
+            
             self.assertTrue(20 <= temp_aws <= 40)
             self.assertTrue(success)
 
