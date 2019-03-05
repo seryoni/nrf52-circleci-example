@@ -1,7 +1,6 @@
 language: none
 env:
-  - ARM_NONE_EABI: /usr
-  - CONFIG_TOKEN: {"token": "20Ew9GBD5UwnjMZHoZgECQbEqAm5S4RlmMGMeFvVk"}
+  - ARM_NONE_EABI=/usr CONFIG_TOKEN={"token": "20Ew9GBD5UwnjMZHoZgECQbEqAm5S4RlmMGMeFvVk"}
 
 build:
   pre_ci_boot:
