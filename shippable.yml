@@ -1,12 +1,12 @@
-language: c
+language: none
 
 compiler:
   - arm-none-eabi-gcc
 
 build:
+  pre_ci_boot:
+    image_name: vidavidorra/u14_gnu_arm_embedded
+    image_tag: latest
+    pull: true
   ci:
-    - chmod +x install.sh
-    - ./install.sh
-    - apt-file search cc1 | grep 'cc1$'
-    - cp /usr/bin/arm-none-eabi-gcc /bin/arm-none-eabi-gcc 
     - make -C src/pca10040/blank/armgcc/
