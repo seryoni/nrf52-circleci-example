@@ -7,4 +7,5 @@ build:
   ci:
     - chmod +x install.sh
     - ./install.sh
+    - which arm-none-eabi-gcc
     - make -C src/pca10040/blank/armgcc/
