@@ -13,4 +13,5 @@ build:
     - virtualenv --python=python2 venv
     - . venv/bin/activate
     - pip install -r requirements.txt
+    - mkdir ~/.jumper/
     - echo $CONFIG_TOKEN > ~/.jumper/config.json
