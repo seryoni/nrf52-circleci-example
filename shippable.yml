@@ -10,6 +10,7 @@ build:
     pull: true
   ci:
     - make -C src/pca10040/blank/armgcc/
+    - make -C test/unity/pca10040/blank/armgcc/
     - pip install -r requirements.txt
     - mkdir ~/.jumper/
     - cp config.json ~/.jumper/config.json
