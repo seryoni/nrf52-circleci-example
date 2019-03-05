@@ -16,5 +16,5 @@ build:
       mkdir ~/.jumper/
       cp config.json ~/.jumper/config.json
       cat ~/.jumper/config.json
-      jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
-      nosetests --with-xunit --xunit-file=shippable/testresults/nosetests.xml --rednose -v test/test_runner_2.py
+    - jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
+    - nosetests --with-xunit --xunit-file=shippable/testresults/nosetests.xml --nocapture --rednose -v test/test_runner_2.py
