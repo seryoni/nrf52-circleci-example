@@ -7,3 +7,4 @@ build:
   ci:
     - chmod +x install.sh
     - ./install.sh
+    - make -C src/pca10040/blank/armgcc/
