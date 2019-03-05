@@ -2,7 +2,6 @@ language: none
 env:
   global:
     - ARM_NONE_EABI: /usr 
-    - CONFIG_TOKEN: '{"token":"20Ew9GBD5UwnjMZHoZgECQbEqAm5S4RlmMGMeFvVk"}'
 
 build:
   pre_ci_boot:
@@ -17,4 +16,4 @@ build:
     - cat ~/.jumper/config.json
     - jumper --version
     - ls /usr/local/lib/python2.7/site-packages/jumper/platforms/default-boards
-    - jumper run -u --fw unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
+    - jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
