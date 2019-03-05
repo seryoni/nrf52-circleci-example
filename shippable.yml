@@ -17,4 +17,4 @@ build:
     - cat ~/.jumper/config.json
     - jumper --version
     - ls /usr/local/lib/python2.7/site-packages/jumper/platforms/default-boards
-    - cd test & jumper run -u --fw unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
+    - jumper run -u --fw unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
