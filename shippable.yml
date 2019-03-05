@@ -8,5 +8,4 @@ build:
     - chmod +x install.sh
     - ./install.sh
     - cp /usr/bin/arm-none-eabi-gcc /bin/arm-none-eabi-gcc 
-    - which cc1
     - make -C src/pca10040/blank/armgcc/
