@@ -1,1 +1,1 @@
-apt-get update && apt-get install -y gcc-arm-none-eabi screen
+apt-get update && apt-get install -y build-essential gcc-arm-none-eabi screen
