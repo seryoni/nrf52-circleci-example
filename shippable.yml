@@ -13,7 +13,7 @@ build:
     - make -C src/pca10040/blank/armgcc/
     - pip install -r requirements.txt
     - mkdir ~/.jumper/
-    - echo $CONFIG_TOKEN > ~/.jumper/config.json
+    - cp config.json ~/.jumper/config.json
     - cat ~/.jumper/config.json
     - jumper --version
     - ls /usr/local/lib/python2.7/site-packages/jumper/platforms/default-boards
