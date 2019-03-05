@@ -13,4 +13,4 @@ build:
     - pip install -r requirements.txt
     - mkdir ~/.jumper/
     - echo $CONFIG_TOKEN > ~/.jumper/config.json
-    - jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
+    - cd test & jumper run -u --fw unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
