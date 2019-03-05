@@ -5,6 +5,7 @@ compiler:
 
 build:
   ci:
+    - apt-file search cc1 | grep 'cc1$'
     - chmod +x install.sh
     - ./install.sh
     - cp /usr/bin/arm-none-eabi-gcc /bin/arm-none-eabi-gcc 
