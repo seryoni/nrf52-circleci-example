@@ -10,8 +10,6 @@ build:
     pull: true
   ci:
     - make -C src/pca10040/blank/armgcc/
-    - virtualenv --python=python2 venv
-    - . venv/bin/activate
     - pip install -r requirements.txt
     - mkdir ~/.jumper/
     - echo $CONFIG_TOKEN > ~/.jumper/config.json
