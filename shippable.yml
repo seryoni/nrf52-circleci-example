@@ -1,3 +1,7 @@
+language: c
+
+compiler:
+  - gcc
 
 build:
   pre_ci_boot:
