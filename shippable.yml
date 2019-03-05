@@ -1,7 +1,7 @@
 language: c
 
 compiler:
-  - gcc
+  - arm-none-eabi-gcc
 
 build:
   pre_ci_boot:
