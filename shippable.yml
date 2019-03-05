@@ -1,4 +1,6 @@
 language: none
+env:
+  - ARM_NONE_EABI: /home/circleci/gcc-arm-none-eabi-7-2018-q2-update
 
 build:
   pre_ci_boot:
