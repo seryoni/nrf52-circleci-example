@@ -7,5 +7,6 @@ build:
   ci:
     - chmod +x install.sh
     - ./install.sh
+    - cp /usr/bin/arm-none-eabi-gcc /bin/arm-none-eabi-gcc 
     - which arm-none-eabi-gcc
     - make -C src/pca10040/blank/armgcc/
