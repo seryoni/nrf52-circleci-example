@@ -14,5 +14,5 @@ build:
     - mkdir ~/.jumper/
     - echo $CONFIG_TOKEN > ~/.jumper/config.json
     - jumper --version
-    - ls /usr/local/lib/python2.7/site-packages/jumper
+    - ls /usr/local/lib/python2.7/site-packages/jumper/platforms
     - cd test & jumper run -u --fw unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
