@@ -4,8 +4,5 @@ compiler:
   - arm-none-eabi-gcc
 
 build:
-  pre_ci_boot:
-    image_name: jumperio/vlab-gcc-arm
-    image_tag: latest
-    pull: true
-    options: "-e HOME=/root"
+  ci:
+    - ./install.sh
