@@ -9,13 +9,12 @@ build:
     image_tag: latest
     pull: true
   ci:
-    - make -C src/pca10040/blank/armgcc/
-    - make -C test/unity/pca10040/blank/armgcc/
-    - pip install -r requirements.txt
-    - mkdir ~/.jumper/
-    - cp config.json ~/.jumper/config.json
-    - cat ~/.jumper/config.json
-    - jumper --version
-    - ls /usr/local/lib/python2.7/site-packages/jumper/platforms/default-boards
-    - jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
-    - nosetests --with-xunit --xunit-file=shippable/testresults/nosetests.xml --rednose -v test/test_runner_2.py
+    - |
+      make -C src/pca10040/blank/armgcc/
+      make -C test/unity/pca10040/blank/armgcc/
+      pip install -r requirements.txt
+      mkdir ~/.jumper/
+      cp config.json ~/.jumper/config.json
+      cat ~/.jumper/config.json
+      jumper run -u --fw test/unity/pca10040/blank/armgcc/_build/nrf52832_xxaa.bin
+      nosetests --with-xunit --xunit-file=shippable/testresults/nosetests.xml --rednose -v test/test_runner_2.py
